@@ -1,0 +1,184 @@
+---
+const features = [
+  {
+    title: "Instalaciones de Primera Clase",
+    description: "Más de 400m² dedicados al entrenamiento funcional con equipamiento de última generación."
+  },
+  {
+    title: "Entrenadores Certificados",
+    description: "Nuestro equipo de entrenadores cuenta con certificaciones internacionales y años de experiencia."
+  },
+  {
+    title: "Comunidad",
+    description: "Forma parte de una comunidad apasionada que te motivará a alcanzar tus objetivos."
+  },
+  {
+    title: "Programación Estructurada",
+    description: "Entrenamientos diseñados científicamente para maximizar resultados y prevenir lesiones."
+  }
+];
+---
+
+<section class="hero-section">
+  <div class="container">
+    <div class="content-wrapper">
+      <h1 class="hero-title">Bienvenido a ALFA BOX</h1>
+      
+      <div class="intro">
+        <img 
+          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070"
+          alt="ALFA BOX instalaciones"
+          class="hero-image"
+        />
+        
+        <p class="text-lg">
+          ALFA BOX nació en 2024 con la misión de crear un espacio donde cualquier persona, independientemente de su nivel de fitness, pudiera alcanzar sus objetivos de forma segura y efectiva.
+        </p>
+        
+        <p class="text-lg">
+          Nos especializamos en CrossFit y entrenamiento funcional, ofreciendo una experiencia única que combina programación profesional, coaching personalizado y una comunidad increíble.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        {features.map(feature => (
+          <div class="feature-card">
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="cta">
+        <h2>¿Listo para empezar?</h2>
+        <p>
+          Únete a nuestra comunidad y comienza tu viaje hacia una vida más saludable y fuerte.
+        </p>
+        <div class="cta-button-wrapper">
+          <a href="/#contacto" class="cta-button">Prueba una clase gratis</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+
+
+  /* Section */
+  .hero-section {
+    padding: 8rem 0; /* approximates py-32 */
+    background-color: #ffffff;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .content-wrapper {
+    max-width: 64rem; /* similar to max-w-4xl */
+    margin: 0 auto;
+  }
+
+  /* Title */
+  .hero-title {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem; /* mb-8 */
+    /* Using the primary color in RGB format */
+    color: var(--color-primary);
+  }
+
+  /* Intro Section */
+  .intro {
+    margin-bottom: 4rem; /* mb-16 */
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    margin-bottom: 2rem; /* mb-8 */
+  }
+
+  .text-lg {
+    font-size: 1.125rem; /* text-lg */
+    color: var(--color-gray-700);
+    margin-bottom: 1.5rem; /* mb-6 */
+  }
+
+  /* Features Grid */
+  .features-grid {
+    display: grid;
+    gap: 2rem; /* gap-8 */
+    margin-bottom: 4rem; /* mb-16 */
+  }
+  @media (min-width: 768px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+    }
+  }
+
+  .feature-card {
+    background-color: var(--color-bg-gray-50);
+    padding: 1.5rem; /* p-6 */
+    border-radius: 0.5rem; /* rounded-lg */
+    border: 1px solid var(--color-primary)
+  }
+
+  .feature-card h3 {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 0.75rem; /* mb-3 */
+    color: var(--color-primary)
+  }
+
+  .feature-card p {
+    color: var(--color-gray-600);
+  }
+
+  /* Call-to-Action Section */
+  .cta {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 2rem; /* p-8 */
+    border-radius: 0.5rem; /* rounded-lg */
+  }
+
+  .cta h2 {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: bold;
+    margin-bottom: 1rem; /* mb-4 */
+    text-align: center;
+  }
+
+  .cta p {
+    text-align: center;
+    margin-bottom: 1.5rem; /* mb-6 */
+  }
+
+  .cta-button-wrapper {
+    text-align: center;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: var(--color-primary);
+    padding: 0.75rem 2rem; /* px-8 py-3 */
+    border-radius: 9999px; /* rounded-full */
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-bg-gray-100);
+  }
+</style>
