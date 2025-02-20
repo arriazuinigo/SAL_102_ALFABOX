@@ -3,7 +3,7 @@
   <url>
     <loc>https://alfabox.es/</loc>
     <lastmod>2024-01-20</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
@@ -16,6 +16,18 @@
     <loc>https://alfabox.es/horarios</loc>
     <lastmod>2024-01-20</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alfabox.es/tarifas</loc>
+    <lastmod>2024-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alfabox.es/contacto</loc>
+    <lastmod>2024-01-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>

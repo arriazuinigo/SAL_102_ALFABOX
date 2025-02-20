@@ -65,3 +65,8 @@ Si deseas contribuir, puedes enviar un pull request o reportar problemas en la s
 
 Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
+
+# GESTORES EMAIL 
+* sendgrid --> no funciona bien / caidas
+* resend --> intentamos 
+* nodemailer

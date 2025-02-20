@@ -1,24 +1,19 @@
 {
-  "name": "ALFA BOX - CrossFit y Entrenamiento Funcional",
-  "short_name": "ALFA BOX",
-  "description": "Box de CrossFit en tu ciudad. Entrenamiento funcional, clases personalizadas y comunidad.",
+  "name": "ALFA BOX - CrossFit Tudela | Entrenamiento Funcional",
+  "short_name": "ALFA BOX Tudela",
+  "description": "Box de CrossFit en Tudela, Navarra. Entrenamiento funcional, clases personalizadas y comunidad.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "rgba(46,156,167,255)",
   "icons": [
     {
-      "src": "/favicon.ico",
-      "sizes": "64x64",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "/icon-192.png",
+      "src": "/Logo_cropped.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/Logo_cropped.png",
       "sizes": "512x512",
       "type": "image/png"
     }

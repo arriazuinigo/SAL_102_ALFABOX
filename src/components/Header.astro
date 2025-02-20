@@ -24,20 +24,22 @@
 
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex space-x-8" id="desktopNav">
-      <a href="/" class="text-gray-600 hover:text-primary transition-colors nav-link">Inicio</a>
+      <a href="/" class="text-gray-600 hover:text-primary transition-colors nav-link">INICIO</a>
       <a href="/alfabox" class="text-gray-600 hover:text-primary transition-colors nav-link">ALFA BOX</a>
-      <a href="/#servicios" class="text-gray-600 hover:text-primary transition-colors nav-link">Clases</a>
-      <a href="/horarios" class="text-gray-600 hover:text-primary transition-colors nav-link">Horarios</a>
-      <a href="/#contacto" class="text-gray-600 hover:text-primary transition-colors nav-link">Contacto</a>
+      <a href="/#servicios" class="text-gray-600 hover:text-primary transition-colors nav-link">CLASES</a>
+      <a href="/horarios" class="text-gray-600 hover:text-primary transition-colors nav-link">HORARIOS</a>
+      <a href="/tarifas" class="text-gray-600 hover:text-primary transition-colors nav-link">TARIFAS</a>
+      <a href="/#contacto" class="text-gray-600 hover:text-primary transition-colors nav-link">CONTACTO</a>
     </nav>
 
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
-      <a href="/" class="mobile-link">Inicio</a>
+      <a href="/" class="mobile-link">INICIO</a>
       <a href="/alfabox" class="mobile-link">ALFA BOX</a>
-      <a href="/#servicios" class="mobile-link">Clases</a>
-      <a href="/horarios" class="mobile-link">Horarios</a>
-      <a href="/#contacto" class="mobile-link">Contacto</a>
+      <a href="/#servicios" class="mobile-link">CLASES</a>
+      <a href="/horarios" class="mobile-link">HORARIOS</a>
+      <a href="/tarifas" class="mobile-link">TARIFAS</a>
+      <a href="/#contacto" class="mobile-link">CONTACTO</a>
     </nav>
   </div>
 </header>
@@ -86,6 +88,7 @@
   const navLinks = document.querySelectorAll('.nav-link');
   const mobileLinks = document.querySelectorAll('.mobile-link');
 
+  // Update header on scroll
   // Update header on scroll
   // (Removed any code that forces .text-white in the else block)
   const updateHeader = () => {

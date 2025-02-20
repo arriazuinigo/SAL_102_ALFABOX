@@ -1,26 +1,135 @@
 ---
+// Contact.astro
 ---
+
 <section id="contacto" class="py-20 bg-primary text-white">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold text-center mb-12">Únete a Nuestra Comunidad</h2>
     <div class="max-w-2xl mx-auto">
-      <form class="space-y-6">
+      <form id="contactForm" class="space-y-6">
         <div>
           <label for="name" class="block mb-2">Nombre</label>
-          <input type="text" id="name" class="w-full p-3 border border-white rounded-lg focus:ring-2 focus:ring-white focus:border-white bg-transparent" required>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            class="w-full p-3 border border-white rounded-lg focus:ring-2 focus:ring-white focus:border-white bg-transparent" 
+            required
+          >
         </div>
+        
         <div>
           <label for="email" class="block mb-2">Email</label>
-          <input type="email" id="email" class="w-full p-3 border border-white rounded-lg focus:ring-2 focus:ring-white focus:border-white bg-transparent" required>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="w-full p-3 border border-white rounded-lg focus:ring-2 focus:ring-white focus:border-white bg-transparent" 
+            required
+          >
         </div>
+
+        <div>
+          <label for="phone" class="block mb-2">Teléfono</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone" 
+            class="w-full p-3 border border-white rounded-lg focus:ring-2 focus:ring-white focus:border-white bg-transparent" 
+            pattern="[0-9+]{9,}"
+            title="Por favor, introduce un número de teléfono válido"
+          >
+        </div>
+
         <div>
           <label for="message" class="block mb-2">Mensaje</label>
-          <textarea id="message" rows="4" class="w-full p-3 border border-white rounded-lg focus:ring-2 focus:ring-white focus:border-white bg-transparent" required></textarea>
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="4" 
+            class="w-full p-3 border border-white rounded-lg focus:ring-2 focus:ring-white focus:border-white bg-transparent" 
+            required
+          ></textarea>
         </div>
-        <button type="submit" class="w-full bg-white text-primary py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors font-bold">
+
+        <div id="formMessage" class="hidden text-center p-4 rounded-lg"></div>
+        
+        <button 
+          type="submit" 
+          id="submitButton"
+          class="w-full bg-white text-primary py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           Empezar Ahora
         </button>
       </form>
     </div>
   </div>
 </section>
+
+<script>
+  interface FormElements extends HTMLFormControlsCollection {
+    name: HTMLInputElement;
+    email: HTMLInputElement;
+    phone: HTMLInputElement;
+    message: HTMLTextAreaElement;
+  }
+
+  interface ContactForm extends HTMLFormElement {
+    readonly elements: FormElements;
+  }
+
+  const form = document.getElementById('contactForm') as ContactForm;
+  const formMessage = document.getElementById('formMessage');
+  const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
+  const originalButtonText = submitButton?.textContent || 'Empezar Ahora';
+
+  function showMessage(message: string, isError: boolean = false) {
+    if (formMessage) {
+      formMessage.className = isError
+        ? 'block bg-red-500 text-white p-4 rounded-lg mb-4'
+        : 'block bg-green-500 text-white p-4 rounded-lg mb-4';
+      formMessage.textContent = message;
+
+      // Hide message after 5 seconds
+      setTimeout(() => {
+        formMessage.className = 'hidden';
+        formMessage.textContent = '';
+      }, 5000);
+    }
+  }
+
+  function setLoading(loading: boolean) {
+    if (submitButton) {
+      submitButton.disabled = loading;
+      submitButton.textContent = loading ? 'Enviando...' : originalButtonText;
+    }
+  }
+
+  if (form && formMessage) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      setLoading(true);
+      
+      try {
+        const formData = new FormData(form);
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+          showMessage('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.');
+          form.reset();
+        } else {
+          showMessage(data.message || 'Error al enviar el mensaje', true);
+        }
+      } catch (error) {
+        showMessage('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.', true);
+      } finally {
+        setLoading(false);
+      }
+    });
+  }
+</script>
