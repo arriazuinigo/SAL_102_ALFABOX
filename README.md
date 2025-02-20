@@ -70,3 +70,8 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para má
 * sendgrid --> no funciona bien / caidas
 * resend --> intentamos 
 * nodemailer
+
+
+# IMPROVE DEVELOPMENTS
+npm install -g vercel
+vercel dev
