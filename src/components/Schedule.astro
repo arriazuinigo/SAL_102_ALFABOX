@@ -1,114 +1,286 @@
 ---
+const classColors = {
+  'ENDURANCE': '#3DA2C2',      // Teal blue
+  'ENDURANCE M.': '#3DA2C2',   // Same teal blue
+  'BASIC GYMS': '#DC3545',     // Red
+  'HALTEROFILIA': '#17A2B8',   // Turquoise
+  'STRENGTH': '#DC3545',       // Same red as BASIC GYMS
+  'ADVANCED GYMS': '#6F42C1',  // Purple
+  'CrossTraining': '#28A745',  // Green
+  'CrossTraining m.': '#28A745', // Same green
+  'Open Box': '#6C757D',       // Grey
+  'Open Box m.': '#6C757D'     // Same grey
+};
+
 const schedule = [
   {
+    time: "06:00",
+    monday: "Open Box m.",
+    tuesday: "Open Box m.",
+    wednesday: "Open Box m.",
+    thursday: "Open Box m.",
+    friday: "Open Box m.",
+    saturday: "Open Box m.",
+    sunday: "Open Box m."
+  },
+  {
     time: "07:00",
-    monday: "CrossFit",
-    tuesday: "CrossFit",
-    wednesday: "CrossFit",
-    thursday: "CrossFit",
-    friday: "CrossFit",
-    saturday: "CrossFit",
-    sunday: "-"
+    monday: "Open Box m.",
+    tuesday: "Open Box m.",
+    wednesday: "Open Box m.",
+    thursday: "Open Box m.",
+    friday: "Open Box m.",
+    saturday: "Open Box m.",
+    sunday: "Open Box m."
   },
   {
-    time: "09:15",
-    monday: "CrossFit",
-    tuesday: "CrossFit",
-    wednesday: "CrossFit",
-    thursday: "CrossFit",
-    friday: "CrossFit",
-    saturday: "CrossFit",
-    sunday: "-"
+    time: "07:15",
+    monday: "CrossTraining m.",
+    tuesday: "CrossTraining m.",
+    wednesday: "CrossTraining m.",
+    thursday: "ENDURANCE M.",
+    friday: "CrossTraining m.",
+    saturday: "",
+    sunday: ""
   },
   {
-    time: "10:30",
+    time: "08:00",
+    monday: "Open Box m.",
+    tuesday: "Open Box m.",
+    wednesday: "Open Box m.",
+    thursday: "Open Box m.",
+    friday: "Open Box m.",
+    saturday: "Open Box m.",
+    sunday: "Open Box m."
+  },
+  {
+    time: "08:30",
+    monday: "CrossTraining m.",
+    tuesday: "",
+    wednesday: "CrossTraining m.",
+    thursday: "",
+    friday: "",
+    saturday: "",
+    sunday: ""
+  },
+  {
+    time: "09:00",
+    monday: "Open Box m.",
+    tuesday: "Open Box m.",
+    wednesday: "Open Box m.",
+    thursday: "Open Box m.",
+    friday: "Open Box m.",
+    saturday: "CrossTraining m.",
+    sunday: "Open Box m."
+  },
+  {
+    time: "09:30",
+    monday: "ENDURANCE M.",
+    tuesday: "CrossTraining m.",
+    wednesday: "ENDURANCE M.",
+    thursday: "CrossTraining m.",
+    friday: "CrossTraining m.",
+    saturday: "",
+    sunday: ""
+  },
+  {
+    time: "10:00",
+    monday: "Open Box m.",
+    tuesday: "Open Box m.",
+    wednesday: "Open Box m.",
+    thursday: "Open Box m.",
+    friday: "Open Box m.",
+    saturday: "CrossTraining m.",
+    sunday: "Open Box m."
+  },
+  {
+    time: "14:30",
+    monday: "CrossTraining m.",
+    tuesday: "CrossTraining m.",
+    wednesday: "CrossTraining m.",
+    thursday: "CrossTraining m.",
+    friday: "CrossTraining m.",
+    saturday: "",
+    sunday: ""
+  },
+  {
+    time: "15:00",
     monday: "Open Box",
     tuesday: "Open Box",
     wednesday: "Open Box",
     thursday: "Open Box",
     friday: "Open Box",
     saturday: "Open Box",
-    sunday: "-"
+    sunday: "Open Box"
+  },
+  {
+    time: "16:00",
+    monday: "Open Box",
+    tuesday: "CrossTraining",
+    wednesday: "CrossTraining",
+    thursday: "CrossTraining",
+    friday: "CrossTraining",
+    saturday: "Open Box",
+    sunday: "Open Box"
+  },
+  {
+    time: "16:30",
+    monday: "ENDURANCE",
+    tuesday: "Open Box",
+    wednesday: "Open Box",
+    thursday: "Open Box",
+    friday: "Open Box",
+    saturday: "",
+    sunday: ""
+  },
+  {
+    time: "17:00",
+    monday: "CrossTraining",
+    tuesday: "CrossTraining",
+    wednesday: "Open Box",
+    thursday: "CrossTraining",
+    friday: "CrossTraining",
+    saturday: "Open Box",
+    sunday: "Open Box"
   },
   {
     time: "17:30",
-    monday: "CrossFit",
-    tuesday: "CrossFit",
-    wednesday: "CrossFit",
-    thursday: "CrossFit",
-    friday: "CrossFit",
-    saturday: "-",
-    sunday: "-"
+    monday: "BASIC GYMS",
+    tuesday: "STRENGTH",
+    wednesday: "ADVANCED GYMS",
+    thursday: "STRENGTH",
+    friday: "",
+    saturday: "",
+    sunday: ""
   },
   {
-    time: "18:45",
-    monday: "CrossFit",
-    tuesday: "CrossFit",
-    wednesday: "CrossFit",
-    thursday: "CrossFit",
-    friday: "CrossFit",
-    saturday: "-",
-    sunday: "-"
+    time: "18:00",
+    monday: "Open Box",
+    tuesday: "Open Box",
+    wednesday: "Open Box",
+    thursday: "Open Box",
+    friday: "Open Box",
+    saturday: "Open Box",
+    sunday: "Open Box"
   },
   {
-    time: "20:00",
-    monday: "CrossFit",
-    tuesday: "CrossFit",
-    wednesday: "CrossFit",
-    thursday: "CrossFit",
-    friday: "CrossFit",
-    saturday: "-",
-    sunday: "-"
+    time: "18:30",
+    monday: "CrossTraining",
+    tuesday: "CrossTraining",
+    wednesday: "CrossTraining",
+    thursday: "CrossTraining",
+    friday: "CrossTraining",
+    saturday: "",
+    sunday: ""
+  },
+  {
+    time: "19:00",
+    monday: "Open Box",
+    tuesday: "Open Box",
+    wednesday: "Open Box",
+    thursday: "Open Box",
+    friday: "Open Box",
+    saturday: "Open Box",
+    sunday: "Open Box"
+  },
+  {
+    time: "19:30",
+    monday: "ENDURANCE",
+    tuesday: "CrossTraining",
+    wednesday: "CrossTraining",
+    thursday: "ENDURANCE",
+    friday: "CrossTraining",
+    saturday: "",
+    sunday: ""
+  },
+  {
+    time: "20:30",
+    monday: "CrossTraining",
+    tuesday: "ENDURANCE",
+    wednesday: "ENDURANCE",
+    thursday: "CrossTraining",
+    friday: "",
+    saturday: "",
+    sunday: ""
+  },
+  {
+    time: "21:00",
+    monday: "Open Box",
+    tuesday: "Open Box",
+    wednesday: "Open Box",
+    thursday: "Open Box",
+    friday: "Open Box",
+    saturday: "Open Box",
+    sunday: "Open Box"
+  },
+  {
+    time: "22:00",
+    monday: "Open Box",
+    tuesday: "Open Box",
+    wednesday: "Open Box",
+    thursday: "Open Box",
+    friday: "Open Box",
+    saturday: "Open Box",
+    sunday: "Open Box"
   }
 ];
-
+ 
 const days = ["Hora", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+
+const getClassStyle = (className) => {
+  if (!className) return '';
+  const bgColor = classColors[className];
+  if (!bgColor) return '';
+  const textColor = bgColor === '#6C757D' ? 'white' : 'black';
+  return `background-color: ${bgColor}; color: ${textColor};`;
+};
+
+ 
 ---
 
-<section class="py-32 bg-white">
-  <div class="container mx-auto px-4">
-    <h1 class="text-4xl font-bold text-center mb-12 text-primary">Horarios</h1>
+
+<section>
+  <div class="container">
+    <h1>Horarios</h1>
     
-    <div class="overflow-x-auto">
-      <table class="min-w-full bg-white border border-gray-200 shadow-lg rounded-lg overflow-hidden">
+    <div class="table-wrapper">
+      <table>
         <thead>
-          <tr class="bg-primary text-white">
+          <tr>
             {days.map(day => (
-              <th class="py-4 px-6 text-left">{day}</th>
+              <th>{day}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {schedule.map((row) => (
-            <tr class="border-b border-gray-200 hover:bg-gray-50">
-              <td class="py-4 px-6 font-semibold">{row.time}</td>
-              <td class="py-4 px-6">{row.monday}</td>
-              <td class="py-4 px-6">{row.tuesday}</td>
-              <td class="py-4 px-6">{row.wednesday}</td>
-              <td class="py-4 px-6">{row.thursday}</td>
-              <td class="py-4 px-6">{row.friday}</td>
-              <td class="py-4 px-6">{row.saturday}</td>
-              <td class="py-4 px-6">{row.sunday}</td>
+            <tr>
+              <td class="time-cell">{row.time}</td>
+              <td style={getClassStyle(row.monday)}>{row.monday}</td>
+              <td style={getClassStyle(row.tuesday)}>{row.tuesday}</td>
+              <td style={getClassStyle(row.wednesday)}>{row.wednesday}</td>
+              <td style={getClassStyle(row.thursday)}>{row.thursday}</td>
+              <td style={getClassStyle(row.friday)}>{row.friday}</td>
+              <td style={getClassStyle(row.saturday)}>{row.saturday}</td>
+              <td style={getClassStyle(row.sunday)}>{row.sunday}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
 
-    <div class="mt-12 text-center">
-      <h2 class="text-2xl font-bold text-primary mb-6">Reserva tu clase</h2>
-      <p class="text-gray-600 mb-8">
+    <div class="booking-section">
+      <h2>Reserva tu clase</h2>
+      <p>
         Reserva tu plaza para asegurar tu espacio en la clase. Las reservas se pueden realizar hasta 1 hora antes del inicio de la clase.
       </p>
       <a 
         href="https://wa.me/34680734560"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-primary-light transition-colors"
       >
         Reservar Clase
         <svg 
-          class="w-5 h-5 ml-2" 
           fill="currentColor" 
           viewBox="0 0 24 24"
         >
@@ -118,3 +290,169 @@ const days = ["Hora", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sá
     </div>
   </div>
 </section>
+
+<style>
+  /* Layout */
+  section {
+    padding: 2rem 0;
+    background-color: white;
+  }
+  
+  @media (min-width: 768px) {
+    section {
+      padding: 4rem 0;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    section {
+      padding: 8rem 0;
+    }
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .container {
+      padding: 0 1rem;
+    }
+  }
+
+  /* Headers */
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+  }
+  
+  @media (min-width: 1024px) {
+    h1 {
+      margin-bottom: 3rem;
+    }
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    h2 {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  /* Table styles */
+  .table-wrapper {
+    overflow-x: auto;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    min-width: 100%;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+  }
+
+  thead tr {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  th {
+    padding: 0.5rem;
+    text-align: left;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    white-space: nowrap;
+  }
+  
+  @media (min-width: 1024px) {
+    th {
+      padding: 1rem 1.5rem;
+    }
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.2s ease;
+  }
+
+  tbody tr:hover {
+    background-color: #f9fafb;
+  }
+
+  td {
+    padding: 0.5rem;
+    text-align: center;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+  }
+  
+  @media (min-width: 1024px) {
+    td {
+      padding: 1rem 1.5rem;
+    }
+  }
+
+  .time-cell {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Booking section */
+  .booking-section {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  @media (min-width: 1024px) {
+    .booking-section {
+      margin-top: 3rem;
+    }
+  }
+
+  .booking-section p {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .booking-section p {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .booking-section a {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+  }
+
+  .booking-section a:hover {
+    background-color: var(--color-primary-light);
+  }
+
+  .booking-section svg {
+    width: clamp(1rem, 3vw, 1.25rem);
+    height: clamp(1rem, 3vw, 1.25rem);
+    margin-left: 0.5rem;
+  }
+</style>

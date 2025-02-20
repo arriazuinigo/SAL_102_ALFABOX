@@ -77,3 +77,6 @@ npm install -g vercel
 vercel dev
 
 vercel --prod 
+
+# FAVICON: 
+https://github.com/withastro/astro/issues/6565
