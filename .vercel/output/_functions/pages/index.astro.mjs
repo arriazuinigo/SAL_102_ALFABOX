@@ -1,7 +1,7 @@
 /* empty css                                   */
 import { c as createComponent, m as maybeRenderHead, e as renderScript, r as renderTemplate, a as renderComponent } from '../chunks/astro/server_BJPLBp84.mjs';
 import 'kleur/colors';
-import { $ as $$Layout, a as $$Header, b as $$Footer } from '../chunks/Footer_C5I8bQ8B.mjs';
+import { $ as $$Layout, a as $$Header, b as $$Footer } from '../chunks/Footer_Bz1IMDFd.mjs';
 import 'clsx';
 /* empty css                                 */
 export { renderers } from '../renderers.mjs';
@@ -24,7 +24,7 @@ const $$Services = createComponent(($$result, $$props, $$slots) => {
     },
     {
       title: "Open Box",
-      description: "Espacio y tiempo libre para practicar y mejorar tus habilidades."
+      description: "Espacio para practicar y mejorar tus habilidades."
     },
     {
       title: "Entrenamiento Personal",

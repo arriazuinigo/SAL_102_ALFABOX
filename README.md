@@ -80,3 +80,5 @@ vercel --prod
 
 # FAVICON: 
 https://github.com/withastro/astro/issues/6565
+
+https://realfavicongenerator.net/your-favicon-is-ready
