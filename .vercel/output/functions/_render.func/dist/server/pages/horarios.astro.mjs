@@ -1,7 +1,7 @@
 /* empty css                                   */
 import { c as createComponent, m as maybeRenderHead, r as renderTemplate, b as addAttribute, a as renderComponent } from '../chunks/astro/server_BJPLBp84.mjs';
 import 'kleur/colors';
-import { $ as $$Layout, a as $$Header, b as $$Footer } from '../chunks/Footer_Bz1IMDFd.mjs';
+import { $ as $$Layout, a as $$Header, b as $$Footer } from '../chunks/Footer_C3a0OeAI.mjs';
 import 'clsx';
 /* empty css                                    */
 export { renderers } from '../renderers.mjs';

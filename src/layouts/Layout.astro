@@ -1,4 +1,6 @@
 ---
+// src\layouts\Layout.astro
+
 interface Props {
   title?: string;
   description?: string;
@@ -27,12 +29,17 @@ import Analytics from '@vercel/analytics/astro'
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     
+
+    <!-- Specific meta tag for Google Search favicon -->
+    <meta name="google-site-verification" content="google982462742dc59bf6" />
+    <link rel="icon" type="image/x-icon" href="https://alfabox.es/favicon.ico" />
+
     <!-- Favicon for Google Search -->
-    <link rel="icon" type="image/png" href="/public/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
-    <link rel="shortcut icon" href="/public/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png" />
-    <link rel="manifest" href="/public/site.webmanifest" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
 
     <!-- SEO Meta Tags -->
     <meta name="keywords" content="CrossFit Tudela, Box CrossFit Navarra, Entrenamiento funcional Tudela, Gimnasio CrossFit Tudela, WOD Tudela, Entrenamiento personal Tudela, Fitness Tudela, ALFA BOX" />

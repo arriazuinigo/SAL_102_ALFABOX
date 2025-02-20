@@ -82,3 +82,4 @@ vercel --prod
 https://github.com/withastro/astro/issues/6565
 
 https://realfavicongenerator.net/your-favicon-is-ready
+https://www.youtube.com/watch?v=SAnLQABTF5A&ab_channel=ColbyFayock
