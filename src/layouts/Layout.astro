@@ -1,12 +1,15 @@
 ---
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = "ALFA BOX - CrossFit Tudela | Entrenamiento Funcional" } = Astro.props;
+const { 
+  title = "ALFA BOX - CrossFit Tudela | Entrenamiento Funcional",
+  description = "El Box es como se llama al lugar donde entrenamos, pero no es solo eso, es un sitio para divertirse, compartir esfuerzo y conocer gente que comparte tu pasión."
+} = Astro.props;
 
 import Analytics from '@vercel/analytics/astro'
-
 ---
 
 <!DOCTYPE html>
@@ -19,43 +22,38 @@ import Analytics from '@vercel/analytics/astro'
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="rgba(46,156,167,255)" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
-    <meta name="description" content="Box de CrossFit en Tudela, Navarra. Entrenamiento funcional, clases personalizadas y comunidad. Mejora tu condición física con nuestros entrenadores certificados. ¡Primera clase gratis!" />
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
     
     <!-- Favicon for Google Search -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/Logo_cropped.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/Logo_cropped.png">
     
-    <!-- Update your existing og:image with absolute URL -->
-    <meta property="og:image" content="https://alfabox.es/Logo_cropped.png" />
-    
-    <!-- Add specific dimensions for better Google Search display -->
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-  
-    <!-- Also update your Twitter card image -->
-    <meta property="twitter:image" content="https://alfabox.es/Logo_cropped.png" />
-
-
     <!-- SEO Meta Tags -->
-    <meta name="keywords" content="CrossFit Tudela, Box CrossFit Navarra, Entrenamiento funcional Tudela, Gimnasio CrossFit Tudela, WOD Tudela, Entrenamiento personal Tudela, Fitness Tudela" />
+    <meta name="keywords" content="CrossFit Tudela, Box CrossFit Navarra, Entrenamiento funcional Tudela, Gimnasio CrossFit Tudela, WOD Tudela, Entrenamiento personal Tudela, Fitness Tudela, ALFA BOX" />
     <meta name="author" content="ALFA BOX" />
     <meta name="robots" content="index, follow" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://alfabox.es/" />
-    <meta property="og:title" content="ALFA BOX - CrossFit Tudela | Entrenamiento Funcional" />
-    <meta property="og:description" content="Box de CrossFit en Tudela, Navarra. Entrenamiento funcional, clases personalizadas y comunidad. Mejora tu condición física con nuestros entrenadores certificados." />
-    <meta property="og:image" content="/Logo_cropped.png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://alfabox.es/Logo_cropped.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="ALFA BOX" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://alfabox.es/" />
-    <meta property="twitter:title" content="ALFA BOX - CrossFit Tudela | Entrenamiento Funcional" />
-    <meta property="twitter:description" content="Box de CrossFit en Tudela, Navarra. Entrenamiento funcional, clases personalizadas y comunidad. Mejora tu condición física con nuestros entrenadores certificados." />
-    <meta property="twitter:image" content="/Logo_cropped.png" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="https://alfabox.es/Logo_cropped.png" />
 
     <!-- Local Business Schema -->
     <script type="application/ld+json">
@@ -63,8 +61,10 @@ import Analytics from '@vercel/analytics/astro'
         "@context": "https://schema.org",
         "@type": "SportsClub",
         "name": "ALFA BOX CrossFit Tudela",
-        "image": "/Logo_cropped.png",
-        "description": "Box de CrossFit en Tudela, Navarra. Entrenamiento funcional y clases personalizadas.",
+        "alternateName": "ALFA BOX",
+        "image": "https://alfabox.es/Logo_cropped.png",
+        "description": "El Box es como se llama al lugar donde entrenamos, pero no es solo eso, es un sitio para divertirse, compartir esfuerzo y conocer gente que comparte tu pasión.",
+        "slogan": "Entrena, comparte, crece",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Polígono Industrial Municipal Vial H",
@@ -93,13 +93,15 @@ import Analytics from '@vercel/analytics/astro'
             "opens": "07:00",
             "closes": "14:00"
           }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/alfabox.es/",
+          "https://www.facebook.com/alfabox.es/"
         ]
       }
     </script>
 
-    <!-- ANALITICAS BASICAS -->
     <Analytics/>
-  
   </head>
   <body class="antialiased">
     <slot />
@@ -110,21 +112,20 @@ import Analytics from '@vercel/analytics/astro'
       class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#128C7E] transition-colors z-50 flex items-center justify-center"
       aria-label="Contactar por WhatsApp"
     >
-    <svg 
-      class="w-6 h-6" 
-      fill="currentColor" 
-      viewBox="0 0 32 32" 
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M16.001 2.902c-7.233 0-13.099 5.866-13.099 13.099 0 2.311.602 4.57 1.746 6.556l-1.86 6.804 7.002-1.839c1.9.99 3.964 1.491 6.21 1.491h.001c7.233 0 13.099-5.866 13.099-13.099s-5.867-13.099-13.099-13.099zm0 24.254c-1.975 0-3.904-.52-5.598-1.505l-.4-.232-4.154 1.09 1.11-4.057-.26-.418c-1.063-1.713-1.622-3.682-1.622-5.671 0-6.003 4.883-10.885 10.885-10.885s10.885 4.883 10.885 10.885-4.883 10.885-10.885 10.885zm5.938-8.154c-.317-.16-1.884-.928-2.177-1.036-.293-.108-.506-.16-.72.16-.214.321-.828 1.036-1.016 1.243-.187.214-.374.24-.695.08-.321-.16-1.353-.502-2.576-1.6-.95-.848-1.592-1.895-1.78-2.214-.187-.32-.02-.49.134-.649.139-.142.299-.37.448-.556.15-.187.2-.32.3-.535.1-.214.05-.401-.025-.556-.075-.16-.716-1.723-.981-2.36-.26-.621-.521-.535-.716-.545-.187-.01-.401-.01-.616-.01-.214 0-.556.08-.849.401-.293.321-1.116 1.097-1.116 2.679 0 1.581 1.143 3.111 1.301 3.33.16.214 2.249 3.467 5.449 4.864.763.332 1.358.532 1.822.684.766.249 1.464.214 2.012.13.613-.09 1.885-.774 2.15-1.523.265-.748.265-1.389.185-1.523-.08-.124-.292-.198-.616-.348z"/>
-    </svg>
+      <svg 
+        class="w-6 h-6" 
+        fill="currentColor" 
+        viewBox="0 0 32 32" 
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M16.001 2.902c-7.233 0-13.099 5.866-13.099 13.099 0 2.311.602 4.57 1.746 6.556l-1.86 6.804 7.002-1.839c1.9.99 3.964 1.491 6.21 1.491h.001c7.233 0 13.099-5.866 13.099-13.099s-5.867-13.099-13.099-13.099zm0 24.254c-1.975 0-3.904-.52-5.598-1.505l-.4-.232-4.154 1.09 1.11-4.057-.26-.418c-1.063-1.713-1.622-3.682-1.622-5.671 0-6.003 4.883-10.885 10.885-10.885s10.885 4.883 10.885 10.885-4.883 10.885-10.885 10.885zm5.938-8.154c-.317-.16-1.884-.928-2.177-1.036-.293-.108-.506-.16-.72.16-.214.321-.828 1.036-1.016 1.243-.187.214-.374.24-.695.08-.321-.16-1.353-.502-2.576-1.6-.95-.848-1.592-1.895-1.78-2.214-.187-.32-.02-.49.134-.649.139-.142.299-.37.448-.556.15-.187.2-.32.3-.535.1-.214.05-.401-.025-.556-.075-.16-.716-1.723-.981-2.36-.26-.621-.521-.535-.716-.545-.187-.01-.401-.01-.616-.01-.214 0-.556.08-.849.401-.293.321-1.116 1.097-1.116 2.679 0 1.581 1.143 3.111 1.301 3.33.16.214 2.249 3.467 5.449 4.864.763.332 1.358.532 1.822.684.766.249 1.464.214 2.012.13.613-.09 1.885-.774 2.15-1.523.265-.748.265-1.389.185-1.523-.08-.124-.292-.198-.616-.348z"/>
+      </svg>
     </a>
   </body>
 </html>
 
 <style is:global>
-    /* Color variables */
-    :root {
+  :root {
     --color-primary: #2e9ca7;
     --color-gray-700: #4a5568;
     --color-gray-600: #718096;
