@@ -75,3 +75,5 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para má
 # IMPROVE DEVELOPMENTS
 npm install -g vercel
 vercel dev
+
+vercel --prod 
