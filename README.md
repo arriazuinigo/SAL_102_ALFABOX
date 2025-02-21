@@ -105,6 +105,9 @@ favicon-96x96.png
 apple-touch-icon.png
  
 
+svg convertor https://picsvg.com/
+
+
 # ERROR FAVICON:  
 It seems you're seeing a failed favicon request to Google's favicon service. This usually happens when Google can't properly fetch your favicon. Here's how to fix it:
 
