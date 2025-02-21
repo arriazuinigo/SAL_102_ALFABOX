@@ -1,0 +1,35 @@
+ 
+
+{
+    "redirects": [
+      {
+        "source": "/index.html",
+        "destination": "/",
+        "permanent": true,
+        "statusCode": 301
+      },
+      {
+        "source": "/index.php",
+        "destination": "/",
+        "permanent": true,
+        "statusCode": 301
+      },
+      {
+        "source": "https://www.alfabox.es/:path*",
+        "destination": "https://alfabox.es/:path*",
+        "permanent": true,
+        "statusCode": 301
+      }
+    ],
+    "headers": [
+      {
+        "source": "/:path*",
+        "headers": [
+          {
+            "key": "Link",
+            "value": "<https://alfabox.es/:path*>; rel=\"canonical\""
+          }
+        ]
+      }
+    ]
+}

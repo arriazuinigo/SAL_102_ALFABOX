@@ -18,9 +18,6 @@ import Analytics from '@vercel/analytics/astro'
 <html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <!-- initial favicon not working  techweb --> 
-    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" />  -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     
@@ -28,20 +25,26 @@ import Analytics from '@vercel/analytics/astro'
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="google" content="notranslate" />
+
+    <!-- Add canonical URL -->
+    <link rel="canonical" href={`https://alfabox.es${Astro.url.pathname}`} />
 
     <!-- Favicon Configuration -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /> 
+
     <!-- Web App Manifest -->
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="rgba(46,156,167,255)" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="ALFA BOX" />
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="rgba(46,156,167,255)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ALFA BOX">
 
     <!-- Google Search Verification -->
     <meta name="google-site-verification" content="google982462742dc59bf6" />

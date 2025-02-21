@@ -2,24 +2,46 @@
 ---
 <section class="relative h-screen">
   <div class="swiper h-full">
-
     <div class="swiper-wrapper">
-
       <div class="swiper-slide relative">
-        <img src="/images/angel_estiramientos.jpg" alt="Group training" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <!-- Preload first image -->
+        <link rel="preload" as="image" href="/images/angel_estiramientos.jpg" fetchpriority="high">
+        <img 
+          src="/images/angel_estiramientos.jpg"
+          alt="Group training" 
+          class="w-full h-full object-cover"
+          width="1920"
+          height="1080"
+          decoding="async"
+        >
+        <div class="absolute inset-0 bg-black/50"></div>
       </div>
 
       <div class="swiper-slide relative">
-        <img src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?q=80&w=2070" alt="CrossFit training" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?q=80&w=2070"
+          alt="CrossFit training" 
+          class="w-full h-full object-cover"
+          loading="lazy"
+          width="1920"
+          height="1080"
+          decoding="async"
+        >
+        <div class="absolute inset-0 bg-black/50"></div>
       </div>
 
       <div class="swiper-slide relative">
-        <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?q=80&w=2069" alt="Group training" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?q=80&w=2069"
+          alt="Group training" 
+          class="w-full h-full object-cover"
+          loading="lazy"
+          width="1920"
+          height="1080"
+          decoding="async"
+        >
+        <div class="absolute inset-0 bg-black/50"></div>
       </div>
-      
     </div>
     
     <div class="swiper-pagination"></div>
@@ -27,9 +49,16 @@
   
   <div class="absolute inset-0 flex items-center justify-center z-10">
     <div class="container mx-auto px-4 text-center text-white">
-      <h1 class="text-5xl md:text-6xl font-bold mb-6">ENTRENA COMO UN CAMPEÓN</h1>
-      <p class="text-xl md:text-2xl mb-8">Descubre tu verdadero potencial en ALFA BOX</p>
-      <a href="#contacto" class="bg-primary px-8 py-3 rounded-full font-semibold hover:bg-primary-light transition-colors">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6">
+        ENTRENA COMO UN CAMPEÓN
+      </h1>
+      <p class="text-xl md:text-2xl mb-8">
+        Descubre tu verdadero potencial en ALFA BOX
+      </p>
+      <a 
+        href="#contacto" 
+        class="bg-primary px-8 py-3 rounded-full font-semibold hover:bg-primary-light transition-colors"
+      >
         Prueba una clase gratis
       </a>
     </div>
@@ -42,16 +71,24 @@
   import 'swiper/css';
   import 'swiper/css/pagination';
 
-  new Swiper('.swiper', {
-    modules: [Autoplay, Pagination],
-    loop: true,
-    autoplay: {
-      delay: 5000,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
+  // Initialize Swiper immediately but with requestAnimationFrame
+  requestAnimationFrame(() => {
+    new Swiper('.swiper', {
+      modules: [Autoplay, Pagination],
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      // Reduce initial load by loading minimum slides
+      slidesPerView: 1,
+      preloadImages: false,
+      watchSlidesProgress: true,
+    });
   });
 </script>
 

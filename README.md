@@ -104,3 +104,39 @@ favicon-32x32.png
 favicon-96x96.png
 apple-touch-icon.png
  
+
+# ERROR FAVICON:  
+It seems you're seeing a failed favicon request to Google's favicon service. This usually happens when Google can't properly fetch your favicon. Here's how to fix it:
+
+First, ensure your favicon is properly linked in your Layout.astro. Make sure this line is in the <head> section:
+
+htmlCopy<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32">
+
+Your current URL parameter shows "url=http://null" which indicates Google can't properly determine your site's URL. In your Layout.astro, add a canonical URL tag:
+
+htmlCopy<link rel="canonical" href="https://alfabox.es" />
+
+Make sure your favicon.ico file:
+
+
+Is directly accessible at https://alfabox.es/favicon.ico
+Is a valid .ico file (not just a renamed PNG)
+Contains at least a 32x32 version
+
+
+Add a specific meta tag for Google:
+
+htmlCopy<meta name="google" content="notranslate" />
+After making these changes:
+
+Clear your browser cache
+Wait a few days for Google to recrawl your site
+# You can test your favicon directly by visiting: https://www.google.com/s2/favicons?domain=alfabox.es
+
+Would you like me to help you verify any of these steps or provide additional troubleshooting?
+
+
+
+#  Google Search Console: 
+
+definiing and implementing the meta tags & sitemap
