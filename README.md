@@ -137,6 +137,12 @@ Would you like me to help you verify any of these steps or provide additional tr
 
 
 
-#  Google Search Console: 
 
+
+
+# SEO 
+PageSpeed Insights
+https://sitechecker.pro/es/
+
+##  Google Search Console: 
 definiing and implementing the meta tags & sitemap
