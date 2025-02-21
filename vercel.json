@@ -1,24 +1,14 @@
- 
-
 {
     "redirects": [
       {
         "source": "/index.html",
         "destination": "/",
-        "permanent": true,
-        "statusCode": 301
+        "permanent": true
       },
       {
         "source": "/index.php",
         "destination": "/",
-        "permanent": true,
-        "statusCode": 301
-      },
-      {
-        "source": "https://www.alfabox.es/:path*",
-        "destination": "https://alfabox.es/:path*",
-        "permanent": true,
-        "statusCode": 301
+        "permanent": true
       }
     ],
     "headers": [
