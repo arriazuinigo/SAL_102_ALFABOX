@@ -1,7 +1,7 @@
 /* empty css                                   */
 import { c as createComponent, m as maybeRenderHead, r as renderTemplate, a as renderComponent } from '../chunks/astro/server_BJPLBp84.mjs';
 import 'kleur/colors';
-import { $ as $$Layout, a as $$Header, b as $$Footer } from '../chunks/Footer_C3a0OeAI.mjs';
+import { $ as $$Layout, a as $$Header, b as $$Footer } from '../chunks/Footer_0iSN2LEh.mjs';
 import 'clsx';
 /* empty css                                   */
 export { renderers } from '../renderers.mjs';
@@ -32,13 +32,13 @@ Nos especializamos en CrossFit y entrenamiento funcional, ofreciendo una experie
 </p> </div> <div class="features-grid" data-astro-cid-oom4siiy> ${features.map((feature) => renderTemplate`<div class="feature-card" data-astro-cid-oom4siiy> <h3 data-astro-cid-oom4siiy>${feature.title}</h3> <p data-astro-cid-oom4siiy>${feature.description}</p> </div>`)} </div> <div class="cta" data-astro-cid-oom4siiy> <h2 data-astro-cid-oom4siiy>¿Listo para empezar?</h2> <p data-astro-cid-oom4siiy>
 Únete a nuestra comunidad y comienza tu viaje hacia una vida más saludable y fuerte.
 </p> <div class="cta-button-wrapper" data-astro-cid-oom4siiy> <a href="/#contacto" class="cta-button" data-astro-cid-oom4siiy>Prueba una clase gratis</a> </div> </div> </div> </div> </section> `;
-}, "C:/Users/Usuario/Desktop/Git/SAL_102_ALFABOX/src/components/AlfaBoxInfo.astro", void 0);
+}, "/home/project/src/components/AlfaBoxInfo.astro", void 0);
 
 const $$Alfabox = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "ALFA BOX Tudela - Sobre Nosotros | Box de CrossFit en Navarra" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Header", $$Header, {})} ${renderComponent($$result2, "AlfaBoxInfo", $$AlfaBoxInfo, {})} ${renderComponent($$result2, "Footer", $$Footer, {})} ` })}`;
-}, "C:/Users/Usuario/Desktop/Git/SAL_102_ALFABOX/src/pages/alfabox.astro", void 0);
+}, "/home/project/src/pages/alfabox.astro", void 0);
 
-const $$file = "C:/Users/Usuario/Desktop/Git/SAL_102_ALFABOX/src/pages/alfabox.astro";
+const $$file = "/home/project/src/pages/alfabox.astro";
 const $$url = "/alfabox";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

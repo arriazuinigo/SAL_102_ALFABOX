@@ -83,3 +83,24 @@ https://github.com/withastro/astro/issues/6565
 
 https://realfavicongenerator.net/your-favicon-is-ready
 https://www.youtube.com/watch?v=SAnLQABTF5A&ab_channel=ColbyFayock
+
+
+
+Added proper favicon links for different sizes and formats
+Added proper meta tags for web app capabilities
+Ensured all favicon paths are absolute (starting with /)
+Added both PNG and ICO formats for better browser compatibility
+Included Apple-specific meta tags and icons
+Make sure you have the following favicon files in your /public directory:
+
+
+# FAVICON:
+After deploying, the favicon should now appear correctly in search results and across different browsers and platforms. Let's deploy the changes to make them live.
+https://favicon.io/favicon-converter/
+
+favicon.ico
+favicon-16x16.png
+favicon-32x32.png
+favicon-96x96.png
+apple-touch-icon.png
+ 

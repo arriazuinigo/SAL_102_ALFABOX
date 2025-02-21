@@ -2,12 +2,12 @@ import { Resend } from 'resend';
 import nodemailer from 'nodemailer';
 export { renderers } from '../../renderers.mjs';
 
-const resend = new Resend("re_dbZJeUZF_KTscTDFPPLVDQq7kgnirkWss");
+const resend = new Resend(undefined                              );
 nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "your_gmail@gmail.com",
-    pass: "your_gmail_app_password"
+    user: undefined                          ,
+    pass: undefined                                  
     // Gmail App Password
   }
 });

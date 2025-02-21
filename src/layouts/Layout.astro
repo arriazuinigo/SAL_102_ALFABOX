@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { 
-  title = "ALFA BOX - CrossFit Tudela | Entrenamiento Funcional",
+  title = "ALFA BOX - Cross Training Tudela | Entrenamiento Funcional",
   description = "¡Cross Training es para todos! Descubre un sistema de ejercicios funcionales ideal para crossfit, crosstraining y hyrox. Mejora tu fuerza y acondicionamiento con rutinas variadas y únete a una comunidad apasionada."
 } = Astro.props;
 
@@ -18,31 +18,36 @@ import Analytics from '@vercel/analytics/astro'
 <html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
+    <!-- initial favicon not working  techweb --> 
+    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" />  -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" href="/Logo_cropped.png" />
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="rgba(46,156,167,255)" />
     <meta name="generator" content={Astro.generator} />
     
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    
 
-    <!-- Specific meta tag for Google Search favicon -->
-    <meta name="google-site-verification" content="google982462742dc59bf6" />
-    <link rel="icon" type="image/x-icon" href="https://alfabox.es/favicon.ico" />
-
-    <!-- Favicon for Google Search -->
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <!-- Favicon Configuration -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="rgba(46,156,167,255)" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="ALFA BOX" />
+
+    <!-- Google Search Verification -->
+    <meta name="google-site-verification" content="google982462742dc59bf6" />
 
     <!-- SEO Meta Tags -->
-    <meta name="keywords" content="CrossFit Tudela, Box CrossFit Navarra, Entrenamiento funcional Tudela, Gimnasio CrossFit Tudela, WOD Tudela, Entrenamiento personal Tudela, Fitness Tudela, ALFA BOX" />
+    <meta name="keywords" content="CrossFit Tudela, Box CrossFit Navarra, Box CrossFit Tudela, Gimnasio CrossFit Tudela, WOD Tudela, HYROX Tudela, Fitness Tudela, ALFA BOX" />
     <meta name="author" content="ALFA BOX" />
     <meta name="robots" content="index, follow" />
     

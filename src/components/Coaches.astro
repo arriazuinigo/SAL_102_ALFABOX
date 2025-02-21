@@ -1,0 +1,93 @@
+---
+const coaches = [
+  {
+    name: "Ángel Martínez",
+    role: "Head Coach",
+    certifications: [
+      "CrossFit Level 1 Trainer",
+      "CrossFit Level 2 Trainer",
+      "Weightlifting Coach"
+    ],
+    description: "Con más de 5 años de experiencia en CrossFit y entrenamiento funcional, Ángel lidera nuestro equipo de coaches con pasión y dedicación. Su enfoque se centra en ayudar a cada atleta a alcanzar su máximo potencial de forma segura y efectiva.",
+    image: "/coaches/angel.jpg"
+  },
+  {
+    name: "David Gatillo",
+    role: "Coach",
+    certifications: [
+      "CrossFit Level 1 Trainer",
+      "Mobility Specialist",
+      "Nutrition Coach"
+    ],
+    description: "Especializado en movilidad y técnica, Javier se asegura de que cada atleta desarrolle una base sólida y una técnica impecable. Su atención al detalle y enfoque en la prevención de lesiones son fundamentales para nuestro programa.",
+    image: "/coaches/javier.jpg"
+  }
+];
+---
+
+<section id="coaches" class="py-32 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-4 text-primary">Nuestro Equipo</h2>
+    <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+      Conoce a nuestros coaches, profesionales certificados y apasionados por ayudarte a alcanzar tus objetivos.
+    </p>
+
+    <div class="relative">
+      <img
+        src="/images/Coaches.jpg"
+        alt={`Coaches_greyscale`}
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto mt-8">
+      {coaches.map((coach) => (
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg border border-primary">
+          <div class=" relative">
+ 
+            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+              <div class="text-white text-center p-4">
+                <h3 class="text-2xl font-bold mb-2">{coach.name}</h3>
+                <p class="text-lg">{coach.role}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-6">
+            <h3 class="text-2xl font-bold mb-2 text-primary">{coach.name}</h3>
+            <p class="text-gray-600 mb-4">{coach.role}</p>
+            
+            <div class="mb-4">
+              <h4 class="font-semibold mb-2 text-primary">Certificaciones:</h4>
+              <ul class="list-disc list-inside text-gray-600">
+                {coach.certifications.map((cert) => (
+                  <li>{cert}</li>
+                ))}
+              </ul>
+            </div>
+            
+            <p class="text-gray-600">{coach.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 text-center">
+      <h3 class="text-2xl font-bold mb-4 text-primary">¿Por qué elegir nuestros coaches?</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-8">
+        <div class="p-6 border border-primary rounded-lg">
+          <h4 class="font-bold mb-2 text-primary">Experiencia</h4>
+          <p class="text-gray-600">Años de experiencia en CrossFit y entrenamiento funcional</p>
+        </div>
+        <div class="p-6 border border-primary rounded-lg">
+          <h4 class="font-bold mb-2 text-primary">Certificaciones</h4>
+          <p class="text-gray-600">Coaches certificados internacionalmente</p>
+        </div>
+        <div class="p-6 border border-primary rounded-lg">
+          <h4 class="font-bold mb-2 text-primary">Dedicación</h4>
+          <p class="text-gray-600">Compromiso total con tu progreso y objetivos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
