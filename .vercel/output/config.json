@@ -2,6 +2,34 @@
 	"version": 3,
 	"routes": [
 		{
+			"src": "^/index$",
+			"headers": {
+				"Location": "/"
+			},
+			"status": 301
+		},
+		{
+			"src": "^/index\\.htm$",
+			"headers": {
+				"Location": "/"
+			},
+			"status": 301
+		},
+		{
+			"src": "^/index\\.html$",
+			"headers": {
+				"Location": "/"
+			},
+			"status": 301
+		},
+		{
+			"src": "^/index\\.php$",
+			"headers": {
+				"Location": "/"
+			},
+			"status": 301
+		},
+		{
 			"handle": "filesystem"
 		},
 		{
@@ -41,6 +69,22 @@
 		},
 		{
 			"src": "^/horarios/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/index/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/index\\.htm/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/index\\.html/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/index\\.php/?$",
 			"dest": "_render"
 		},
 		{

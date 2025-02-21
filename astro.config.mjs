@@ -11,5 +11,21 @@ export default defineConfig({
   output: 'server',
   vite: {
     envDir: '.'
+  },
+  redirects: {
+    '/index.html': '/',
+    '/index.htm': '/',
+    '/index.php': '/',
+    'index': '/',
+  },
+  headers: {
+    '/*': [
+      {
+        'x-robots-tag': 'all'
+      }
+    ]
+  },
+  server: {
+    host: true
   }
 });
