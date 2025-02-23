@@ -98,6 +98,7 @@ Make sure you have the following favicon files in your /public directory:
 After deploying, the favicon should now appear correctly in search results and across different browsers and platforms. Let's deploy the changes to make them live.
 https://favicon.io/favicon-converter/
 
+* Best webpage : https://favicon.io/ 
 favicon.ico
 favicon-16x16.png
 favicon-32x32.png

@@ -1,0 +1,47 @@
+---
+// src/components/BoxSection.astro
+import PhotoGallery from './PhotoGallery.astro';
+
+const boxImages = [
+  {
+    src: "/images/angel_estiramientos.jpg",
+    alt: "Box training area with equipment"
+  },
+  {
+    src: "/images/angel_estiramientos.jpg",
+    alt: "Members training in our box"
+  },
+  {
+    src: "/images/angel_estiramientos.jpg",
+    alt: "Box facilities overview"
+  }
+];
+---
+
+<!-- Nuestro Box Section -->
+<section class="py-16 px-4 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-5xl font-black text-center mb-2 uppercase tracking-wider" style="font-family: 'Anton', sans-serif;">
+      Nuestro Box
+    </h2>
+    <h3 class="text-2xl text-center mb-12 text-[#BBA14F]">VEN A CONOCERNOS, EMPIEZA TU DESAFÍO</h3>
+
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <PhotoGallery images={boxImages} />
+      <div class="space-y-6">
+        <p class="text-lg">
+          El Box es como se llama al lugar donde entrenamos, pero no es solo eso, es un sitio para divertirse, compartir esfuerzo y conocer gente que comparte tu pasión.
+        </p>
+        <p class="text-lg">
+          Contamos con programas de entrenamiento en grupo con plazas limitadas, adaptados a tu nivel, con el seguimiento de un coach pendiente de ti. Además disponemos de planes para entrenamiento libre dentro de nuestro box.
+        </p>
+        <a 
+          href="#contacto" 
+          class="inline-block bg-[#2E9CA7] text-white px-8 py-3 rounded-md hover:bg-[#247A83] transition-colors"
+        >
+          Apúntate ahora
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

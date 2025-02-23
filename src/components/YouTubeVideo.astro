@@ -1,0 +1,46 @@
+---
+// src/components/YouTubeVideo.astro
+interface Props {
+  videoId: string;
+  title?: string;
+}
+
+const { videoId, title = "YouTube video" } = Astro.props;
+const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+---
+
+<!-- Cross Training Section -->
+<section class="py-16 px-4 max-w-6xl mx-auto">
+  <h1 class="text-5xl font-black text-center mb-2 uppercase tracking-wider" style="font-family: 'Anton', sans-serif;">
+    Cross Training
+  </h1>
+  <h2 class="text-2xl text-center mb-8 text-[#BBA14F]">QUÉ ES Y EN QUÉ CONSISTE</h2>
+  
+  <div class="grid md:grid-cols-2 gap-8 items-center">
+    <div class="space-y-4">
+      <p class="text-lg">
+        Cross Training es para todo el mundo! Es un sistema de entrenamiento de fuerza y acondicionamiento basado en ejercicios funcionales constantemente variados.
+      </p>
+      <p class="text-lg">Mira el video para más información.</p>
+      <p class="font-bold text-lg">Ven a probarlo, la primera clase es gratis!</p>
+      <a 
+        href="#contacto" 
+        class="inline-block bg-[#2E9CA7] text-white px-8 py-3 rounded-md hover:bg-[#247A83] transition-colors"
+      >
+        Apúntate ahora
+      </a>
+    </div>
+    
+    <div class="relative w-full pt-[56.25%]">
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}`}
+        title={title}
+        loading="lazy"
+        poster={thumbnailUrl}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+      />
+    </div>
+  </div>
+</section>

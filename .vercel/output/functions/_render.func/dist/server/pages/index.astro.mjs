@@ -1,7 +1,7 @@
 /* empty css                                   */
-import { c as createComponent, m as maybeRenderHead, e as renderScript, r as renderTemplate, a as renderComponent } from '../chunks/astro/server_BJPLBp84.mjs';
+import { c as createComponent, m as maybeRenderHead, e as renderScript, r as renderTemplate, d as createAstro, b as addAttribute, a as renderComponent } from '../chunks/astro/server_BJPLBp84.mjs';
 import 'kleur/colors';
-import { $ as $$Layout, a as $$Header, b as $$Footer } from '../chunks/Footer_Bq5hY_ym.mjs';
+import { $ as $$Layout, a as $$Header, b as $$Footer } from '../chunks/Footer_BkWhTV7J.mjs';
 import 'clsx';
 /* empty css                                 */
 export { renderers } from '../renderers.mjs';
@@ -48,8 +48,57 @@ Empezar Ahora
 </button> </form> </div> </div> </section> ${renderScript($$result, "C:/Users/Usuario/Desktop/Git/SAL_102_ALFABOX/src/components/Contact.astro?astro&type=script&index=0&lang.ts")}`;
 }, "C:/Users/Usuario/Desktop/Git/SAL_102_ALFABOX/src/components/Contact.astro", void 0);
 
+const $$Astro$1 = createAstro("https://alfabox.es");
+const $$YouTubeVideo = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
+  Astro2.self = $$YouTubeVideo;
+  const { videoId, title = "YouTube video" } = Astro2.props;
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  return renderTemplate`<!-- Cross Training Section -->${maybeRenderHead()}<section class="py-16 px-4 max-w-6xl mx-auto"> <h1 class="text-5xl font-black text-center mb-2 uppercase tracking-wider" style="font-family: 'Anton', sans-serif;">
+Cross Training
+</h1> <h2 class="text-2xl text-center mb-8 text-[#BBA14F]">QUÉ ES Y EN QUÉ CONSISTE</h2> <div class="grid md:grid-cols-2 gap-8 items-center"> <div class="space-y-4"> <p class="text-lg">
+Cross Training es para todo el mundo! Es un sistema de entrenamiento de fuerza y acondicionamiento basado en ejercicios funcionales constantemente variados.
+</p> <p class="text-lg">Mira el video para más información.</p> <p class="font-bold text-lg">Ven a probarlo, la primera clase es gratis!</p> <a href="#contacto" class="inline-block bg-[#2E9CA7] text-white px-8 py-3 rounded-md hover:bg-[#247A83] transition-colors">
+Apúntate ahora
+</a> </div> <div class="relative w-full pt-[56.25%]"> <iframe${addAttribute(`https://www.youtube.com/embed/${videoId}`, "src")}${addAttribute(title, "title")} loading="lazy"${addAttribute(thumbnailUrl, "poster")} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"></iframe> </div> </div> </section>`;
+}, "C:/Users/Usuario/Desktop/Git/SAL_102_ALFABOX/src/components/YouTubeVideo.astro", void 0);
+
+const $$Astro = createAstro("https://alfabox.es");
+const $$PhotoGallery = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$PhotoGallery;
+  const { images } = Astro2.props;
+  return renderTemplate`${maybeRenderHead()}<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"> ${images.map((image) => renderTemplate`<div class="relative overflow-hidden rounded-lg aspect-square"> <img${addAttribute(image.src, "src")}${addAttribute(image.alt, "alt")} class="object-cover w-full h-full hover:scale-105 transition-transform duration-300"> </div>`)} </div>`;
+}, "C:/Users/Usuario/Desktop/Git/SAL_102_ALFABOX/src/components/PhotoGallery.astro", void 0);
+
+const $$BoxSection = createComponent(($$result, $$props, $$slots) => {
+  const boxImages = [
+    {
+      src: "/images/angel_estiramientos.jpg",
+      alt: "Box training area with equipment"
+    },
+    {
+      src: "/images/angel_estiramientos.jpg",
+      alt: "Members training in our box"
+    },
+    {
+      src: "/images/angel_estiramientos.jpg",
+      alt: "Box facilities overview"
+    }
+  ];
+  return renderTemplate`<!-- Nuestro Box Section -->${maybeRenderHead()}<section class="py-16 px-4 bg-gray-50"> <div class="max-w-6xl mx-auto"> <h2 class="text-5xl font-black text-center mb-2 uppercase tracking-wider" style="font-family: 'Anton', sans-serif;">
+Nuestro Box
+</h2> <h3 class="text-2xl text-center mb-12 text-[#BBA14F]">VEN A CONOCERNOS, EMPIEZA TU DESAFÍO</h3> <div class="grid md:grid-cols-2 gap-8 items-center"> ${renderComponent($$result, "PhotoGallery", $$PhotoGallery, { "images": boxImages })} <div class="space-y-6"> <p class="text-lg">
+El Box es como se llama al lugar donde entrenamos, pero no es solo eso, es un sitio para divertirse, compartir esfuerzo y conocer gente que comparte tu pasión.
+</p> <p class="text-lg">
+Contamos con programas de entrenamiento en grupo con plazas limitadas, adaptados a tu nivel, con el seguimiento de un coach pendiente de ti. Además disponemos de planes para entrenamiento libre dentro de nuestro box.
+</p> <a href="#contacto" class="inline-block bg-[#2E9CA7] text-white px-8 py-3 rounded-md hover:bg-[#247A83] transition-colors">
+Apúntate ahora
+</a> </div> </div> </div> </section>`;
+}, "C:/Users/Usuario/Desktop/Git/SAL_102_ALFABOX/src/components/BoxSection.astro", void 0);
+
 const $$Index = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {}, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Header", $$Header, {})} ${renderComponent($$result2, "Hero", $$Hero, {})} ${renderComponent($$result2, "Services", $$Services, {})} ${renderComponent($$result2, "Location", $$Location, {})} ${renderComponent($$result2, "Contact", $$Contact, {})} ${renderComponent($$result2, "Footer", $$Footer, {})} ` })}`;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {}, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Header", $$Header, {})} ${renderComponent($$result2, "Hero", $$Hero, {})} ${renderComponent($$result2, "Services", $$Services, {})} ${renderComponent($$result2, "YouTubeVideo", $$YouTubeVideo, { "videoId": "WxazE0_cipo", "title": "Cross Training en AlfaBox" })} ${renderComponent($$result2, "BoxSection", $$BoxSection, {})} ${renderComponent($$result2, "Location", $$Location, {})} ${renderComponent($$result2, "Contact", $$Contact, {})} ${renderComponent($$result2, "Footer", $$Footer, {})} ` })}`;
 }, "C:/Users/Usuario/Desktop/Git/SAL_102_ALFABOX/src/pages/index.astro", void 0);
 
 const $$file = "C:/Users/Usuario/Desktop/Git/SAL_102_ALFABOX/src/pages/index.astro";
