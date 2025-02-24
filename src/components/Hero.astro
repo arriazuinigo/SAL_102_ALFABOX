@@ -1,10 +1,11 @@
 ---
+// src\components\Hero.astro
 ---
-<section class="relative h-screen">
+
+<section class="relative h-[70vh]">
   <div class="swiper h-full">
     <div class="swiper-wrapper">
       <div class="swiper-slide relative">
-
         <!-- Preload first image -->
         <link rel="preload" as="image" href="/images/angel_estiramientos.jpg" fetchpriority="high">
         <img 
@@ -45,6 +46,10 @@
       </div>
     </div>
     
+    <!-- Add Navigation Arrows
+    <div class="swiper-button-prev custom-nav-button"></div>
+    <div class="swiper-button-next custom-nav-button"></div> -->
+    
     <div class="swiper-pagination"></div>
   </div>
   
@@ -66,32 +71,6 @@
   </div>
 </section>
 
-<script>
-  import Swiper from 'swiper';
-  import { Autoplay, Pagination } from 'swiper/modules';
-  import 'swiper/css';
-  import 'swiper/css/pagination';
-
-  // Initialize Swiper immediately but with requestAnimationFrame
-  requestAnimationFrame(() => {
-    new Swiper('.swiper', {
-      modules: [Autoplay, Pagination],
-      loop: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      // Reduce initial load by loading minimum slides
-      slidesPerView: 1,
-      preloadImages: false,
-      watchSlidesProgress: true,
-    });
-  });
-</script>
 
 <style>
   .swiper {
@@ -111,4 +90,68 @@
   :global(.swiper-pagination-bullet-active) {
     background: rgba(46,156,167,255);
   }
+ 
+  /* Custom navigation buttons - white arrows without background */
+  .custom-nav-button::after {
+    color: white !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+  }
+  
+  .custom-nav-button {
+    background: transparent !important;
+  }
+  
+  /* Make the pagination bullets white */
+  .swiper-pagination-bullet {
+    background: white !important;
+    opacity: 0.7;
+  }
+  
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
 </style>
+
+
+
+<script>
+  import Swiper from 'swiper';
+  import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/pagination';
+  import 'swiper/css/navigation';
+
+  // Using the client:load directive in Astro ensures this script runs in the browser
+  // Simplified initialization
+  let swiperInstance;
+  
+  function initializeSwiper() {
+    swiperInstance = new Swiper('.swiper', {
+      modules: [Autoplay, Pagination, Navigation],
+      loop: true,
+      slidesPerView: 1,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      }
+    });
+  }
+
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeSwiper);
+  } else {
+    initializeSwiper();
+  }
+  
+ 
+</script>
