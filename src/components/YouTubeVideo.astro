@@ -1,11 +1,8 @@
 ---
 // src/components/YouTubeVideo.astro
-interface Props {
-  videoId: string;
-  title?: string;
-}
-
-const { videoId, title = "YouTube video" } = Astro.props;
+// This component now has the video ID hard-coded for demonstration
+const videoId = "WxazE0_cipo";
+const title = "YouTube video";
 const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 ---
 
@@ -31,16 +28,48 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
       </a>
     </h3>
     
-    <div class="relative w-full pt-[56.25%]">
-      <iframe
-        src={`https://www.youtube.com/embed/${videoId}`}
-        title={title}
-        loading="lazy"
-        poster={thumbnailUrl}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-      />
+    <div class="youtube-container relative w-full pt-[56.25%]">
+      <div class="youtube-player" data-id="WxazE0_cipo">
+        <div class="absolute top-0 left-0 w-full h-full">
+          <img src="https://img.youtube.com/vi/WxazE0_cipo/maxresdefault.jpg" class="w-full h-full object-cover rounded-lg" alt="YouTube video">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <button class="play-button w-16 h-16 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">
+              <svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  function setupYouTubePlayer() {
+    document.querySelectorAll('.youtube-player').forEach(player => {
+      const videoId = player.getAttribute('data-id');
+      const playButton = player.querySelector('.play-button');
+      
+      if (playButton) {
+        playButton.addEventListener('click', () => {
+          const iframe = document.createElement('iframe');
+          iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+          iframe.setAttribute('title', 'YouTube video player');
+          iframe.setAttribute('frameborder', '0');
+          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.classList.add('absolute', 'top-0', 'left-0', 'w-full', 'h-full', 'rounded-lg');
+          
+          // Replace the thumbnail with the iframe
+          const wrapper = player.querySelector('div');
+          wrapper.innerHTML = '';
+          wrapper.appendChild(iframe);
+        });
+      }
+    });
+  }
+  
+  // Run the setup after the DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', setupYouTubePlayer);
+</script>
