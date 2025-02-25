@@ -1,0 +1,142 @@
+<div class="bg-white p-8 rounded-lg shadow-lg border border-primary">
+    <form id="contactForm" class="space-y-6">
+      <div>
+        <label for="name" class="block text-gray-600 mb-2">Nombre completo *</label>
+        <input 
+          type="text" 
+          id="name"
+          name="name" 
+          class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+          required
+        />
+      </div>
+      
+      <div>
+        <label for="email" class="block text-gray-600 mb-2">Email *</label>
+        <input 
+          type="email" 
+          id="email"
+          name="email" 
+          class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="phone" class="block text-gray-600 mb-2">Teléfono</label>
+        <input 
+          type="tel" 
+          id="phone"
+          name="phone" 
+          class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+          pattern="[0-9+]{9,}"
+          title="Por favor, introduce un número de teléfono válido"
+        />
+      </div>
+
+      <div>
+        <label for="subject" class="block text-gray-600 mb-2">Asunto *</label>
+        <select 
+          id="subject"
+          name="subject" 
+          class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+          required
+        >
+          <option value="">Selecciona una opción</option>
+          <option value="info">Información general</option>
+          <option value="trial">Prueba gratuita</option>
+          <option value="prices">Información de tarifas</option>
+          <option value="other">Otros</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="message" class="block text-gray-600 mb-2">Mensaje *</label>
+        <textarea 
+          id="message"
+          name="message" 
+          rows="4" 
+          class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+          required
+        ></textarea>
+      </div>
+
+      <div id="formMessage" class="hidden text-center p-4 rounded-lg"></div>
+
+      <button 
+        type="submit"
+        id="submitButton"
+        class="w-full bg-primary text-white py-3 px-6 rounded-lg hover:bg-primary-light transition-colors font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Enviar mensaje
+      </button>
+    </form>
+  </div>
+
+
+  <script>
+    interface FormElements extends HTMLFormControlsCollection {
+      name: HTMLInputElement;
+      email: HTMLInputElement;
+      phone: HTMLInputElement;
+      message: HTMLTextAreaElement;
+    }
+  
+    interface ContactForm extends HTMLFormElement {
+      readonly elements: FormElements;
+    }
+  
+    const form = document.getElementById('contactForm') as ContactForm;
+    const formMessage = document.getElementById('formMessage');
+    const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
+    const originalButtonText = submitButton?.textContent || 'Enviar mensaje';
+  
+    function showMessage(message: string, isError: boolean = false) {
+      if (formMessage) {
+        formMessage.className = isError
+          ? 'block bg-red-100 text-red-700 p-4 rounded-lg mb-4'
+          : 'block bg-green-100 text-green-700 p-4 rounded-lg mb-4';
+        formMessage.textContent = message;
+  
+        setTimeout(() => {
+          formMessage.className = 'hidden';
+          formMessage.textContent = '';
+        }, 5000);
+      }
+    }
+  
+    function setLoading(loading: boolean) {
+      if (submitButton) {
+        submitButton.disabled = loading;
+        submitButton.textContent = loading ? 'Enviando...' : originalButtonText;
+      }
+    }
+  
+    if (form && formMessage) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        
+        try {
+          const formData = new FormData(form);
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            body: formData,
+          });
+  
+          const data = await response.json();
+          
+          if (response.ok) {
+            showMessage('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.');
+            form.reset();
+          } else {
+            showMessage(data.message || 'Error al enviar el mensaje', true);
+          }
+        } catch (error) {
+          showMessage('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.', true);
+        } finally {
+          setLoading(false);
+        }
+      });
+    }
+  </script>

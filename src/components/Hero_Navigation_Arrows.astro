@@ -1,0 +1,295 @@
+---
+// src\components\Hero.astro
+---
+
+<section class="relative h-[70vh]">
+  <div class="image-slider h-full">
+    <div class="image-container h-full">
+      
+      <!-- First slide -->
+      <div class="slide active relative">
+        <!-- Preload first image -->
+        <link rel="preload" as="image" href="/images/angel_estiramientos.jpg" fetchpriority="high">
+        <img 
+          src="/images/angel_estiramientos.jpg"
+          alt="Group training" 
+          class="w-full h-full object-cover"
+          width="1920"
+          height="1080"
+          decoding="async"
+        >
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
+
+      <!-- Second slide -->
+      <div class="slide relative">
+        <img 
+          src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?q=80&w=2070"
+          alt="CrossFit training" 
+          class="w-full h-full object-cover"
+          loading="lazy"
+          width="1920"
+          height="1080"
+          decoding="async"
+        >
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
+
+      <!-- Third slide -->
+      <div class="slide relative">
+        <img 
+          src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?q=80&w=2069"
+          alt="Group training" 
+          class="w-full h-full object-cover"
+          loading="lazy"
+          width="1920"
+          height="1080"
+          decoding="async"
+        >
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
+    </div>
+    
+    <!-- Navigation Arrows -->
+    <button class="arrow left absolute top-1/2 left-4 transform -translate-y-1/2 z-20 text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="arrow right absolute top-1/2 right-4 transform -translate-y-1/2 z-20 text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+    
+    <!-- Pagination Indicators - with correct initial state -->
+    <div class="pagination absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
+      <!-- Manual initialization with first dot active -->
+      <div class="pagination-dot active"></div>
+      <div class="pagination-dot"></div>
+      <div class="pagination-dot"></div>
+    </div>
+  </div>
+  
+  <div class="absolute inset-0 flex items-center justify-center z-10">
+    <div class="container mx-auto px-4 text-center text-white">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6">
+        ENTRENA COMO UN CAMPEÓN
+      </h1>
+      <p class="text-xl md:text-2xl mb-8">
+        Descubre tu verdadero potencial en ALFA BOX
+      </p>
+      <a 
+        href="/contacto" 
+        class="bg-primary px-8 py-3 rounded-full font-semibold hover:bg-primary-light transition-colors"
+      >
+        Prueba una clase gratis
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .image-slider {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+  
+  .arrow {
+    background: rgba(0, 0, 0, 0.3);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .arrow:hover {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .pagination {
+    padding: 6px 10px;
+    border-radius: 20px;
+  }
+  
+  .pagination-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  
+  .pagination-dot.active {
+    opacity: 1;
+    transform: scale(1.2);
+    background: white;
+  }
+</style>
+
+<script>
+  function initializeSlider() {
+    let currentImageIndex = 0;
+    let autoplayInterval;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const pagination = document.querySelector('.pagination');
+    
+    // Clear existing pagination dots (if any)
+    if (pagination) {
+      // We'll keep the existing static dots and just make sure they're properly linked
+      const existingDots = pagination.querySelectorAll('.pagination-dot');
+      
+      // If there are existing dots and they match our slide count, just add event listeners
+      if (existingDots.length === totalSlides) {
+        existingDots.forEach((dot, i) => {
+          // Make sure first dot is active
+          if (i === 0) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+          
+          // Add click event listeners
+          dot.addEventListener('click', () => {
+            showSlide(i);
+          });
+        });
+      } else {
+        // If dots don't match slides, rebuild them
+        pagination.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+          const dot = document.createElement('div');
+          dot.classList.add('pagination-dot');
+          if (i === 0) dot.classList.add('active');
+          dot.addEventListener('click', () => {
+            showSlide(i);
+          });
+          pagination.appendChild(dot);
+        }
+      }
+    }
+    
+    // Show specific slide by index
+    function showSlide(index) {
+      // Update slides
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[index].classList.add('active');
+      
+      // Update pagination dots
+      const dots = document.querySelectorAll('.pagination-dot');
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+      
+      // Update current index
+      currentImageIndex = index;
+      
+      // Reset autoplay timer
+      resetAutoplay();
+    }
+    
+    // Navigate to next slide
+    function nextSlide() {
+      currentImageIndex = (currentImageIndex + 1) % totalSlides;
+      showSlide(currentImageIndex);
+    }
+    
+    // Navigate to previous slide
+    function previousSlide() {
+      currentImageIndex = (currentImageIndex - 1 + totalSlides) % totalSlides;
+      showSlide(currentImageIndex);
+    }
+    
+    // Set up autoplay
+    function startAutoplay() {
+      autoplayInterval = setInterval(nextSlide, 5000);
+    }
+    
+    // Reset autoplay timer
+    function resetAutoplay() {
+      clearInterval(autoplayInterval);
+      startAutoplay();
+    }
+    
+    // Add click event listeners to arrows
+    const nextArrow = document.querySelector('.arrow.right');
+    const prevArrow = document.querySelector('.arrow.left');
+    
+    if (nextArrow) {
+      nextArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        nextSlide();
+        console.log('Next arrow clicked, showing slide', currentImageIndex);
+      });
+    }
+    
+    if (prevArrow) {
+      prevArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        previousSlide();
+        console.log('Previous arrow clicked, showing slide', currentImageIndex);
+      });
+    }
+    
+    // Ensure only the first slide is active initially
+    slides.forEach((slide, index) => {
+      if (index === 0) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+    
+    // Start autoplay
+    startAutoplay();
+    
+    // Pause autoplay when user interacts with the slider
+    document.querySelector('.image-slider')?.addEventListener('mouseenter', () => {
+      clearInterval(autoplayInterval);
+    });
+    
+    document.querySelector('.image-slider')?.addEventListener('mouseleave', () => {
+      startAutoplay();
+    });    
+    console.log('Custom image slider initialized with', totalSlides, 'slides');
+  }
+
+  // Initialize the slider when the document is ready
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(initializeSlider, 1);
+  } else {
+    document.addEventListener('DOMContentLoaded', initializeSlider);
+  }
+  
+  // Reinitialize on Astro page load events
+  document.addEventListener('astro:page-load', initializeSlider);
+</script>

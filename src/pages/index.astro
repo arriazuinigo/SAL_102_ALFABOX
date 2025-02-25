@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
+import Hero from '../components/Hero_Navigation_Arrows.astro';
 import Services from '../components/Services.astro';
 import Location from '../components/Location.astro';
 import Contact from '../components/Contact.astro';
@@ -10,20 +10,24 @@ import YouTubeVideo from '../components/YouTubeVideo.astro';
 import PhotoGallery from '../components/PhotoGallery.astro';
 import Schedule from '../components/Schedule.astro';
 import BoxSection from '../components/BoxSection.astro';
-
-
+import InstagramFeed from '../components/InstagramFeed.astro';
+  
 ---
 
 <Layout>
   <Header />
   <Hero />
+
   <Services />
 
-  <!-- <YouTubeVideo videoId="WxazE0_cipo" title="Cross Training en AlfaBox" />
+  <BoxSection /> 
+
+  <YouTubeVideo videoId="WxazE0_cipo" title="Cross Training en AlfaBox" />
   
-  <BoxSection /> -->
+
+  
   <!-- <InstagramFeed /> -->
-  <Location />
-  <Contact />
+
+  <!-- <Contact /> -->
   <Footer />
 </Layout>
