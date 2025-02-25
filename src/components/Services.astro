@@ -2,25 +2,41 @@
 const services = [
   {
     title: "CrossFit",
-    description: "Entrenamiento funcional de alta intensidad para mejorar tu condición física general."
+    description: "Experimenta entrenamientos funcionales de alta intensidad diseñados para potenciar tu rendimiento integral."
   },
   {
     title: "Clases de Iniciación",
-    description: "Aprende las técnicas básicas y movimientos fundamentales del CrossFit."
+    description: "Descubre y domina los fundamentos esenciales del CrossFit en un entorno acogedor."
   },
   {
     title: "Open Box",
-    description: "Espacio para practicar y mejorar tus habilidades."
+    description: "Aprovecha un espacio flexible para practicar y perfeccionar tus habilidades a tu ritmo."
+  },
+  {
+    title: "Hyrox",
+    description: "Participa en sesiones especializadas, guiadas por entrenadores certificados, para maximizar tu rendimiento."
+  },
+  {
+    title: "Cross Training",
+    description: "Mejora tu condición física general con entrenamientos funcionales de alta intensidad y variedad."
+  },
+  {
+    title: "Endurance",
+    description: "Fortalece tu resistencia y técnica mediante ejercicios basados en los movimientos esenciales del CrossFit."
+  },
+  {
+    title: "Halterofilia",
+    description: "Optimiza tu fuerza y precisión en un espacio dedicado al perfeccionamiento del levantamiento de pesas."
   },
   {
     title: "Entrenamiento Personal",
-    description: "Sesiones personalizadas con nuestros entrenadores certificados."
+    description: "Recibe asesoramiento individualizado en sesiones personalizadas con nuestros entrenadores certificados."
   }
 ];
 ---
 <section id="servicios" class="py-20 bg-white">
   <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-bold text-center mb-12 text-primary">Nuestras Clases</h2>
+    <h3 class="text-4xl font-bold text-center mb-12 text-primary">Nuestras Clases</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       {services.map(service => (
         <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-primary">

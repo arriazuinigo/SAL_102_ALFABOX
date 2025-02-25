@@ -241,7 +241,7 @@ const getClassStyle = (className) => {
 
 <section>
   <div class="container">
-    <h1>Horarios</h1>
+    <h2>Horarios</h2>
     
     <div class="table-wrapper">
       <table>
@@ -270,7 +270,7 @@ const getClassStyle = (className) => {
     </div>
 
     <div class="booking-section">
-      <h2>Reserva tu clase</h2>
+      <h3>Reserva tu clase</h3>
       <p>
         Reserva tu plaza para asegurar tu espacio en la clase. Las reservas se pueden realizar hasta 1 hora antes del inicio de la clase.
       </p>
@@ -324,7 +324,7 @@ const getClassStyle = (className) => {
   }
 
   /* Headers */
-  h1 {
+  h2 {
     font-size: clamp(1.5rem, 4vw, 2.25rem);
     font-weight: bold;
     text-align: center;
@@ -333,12 +333,12 @@ const getClassStyle = (className) => {
   }
   
   @media (min-width: 1024px) {
-    h1 {
+    h2 {
       margin-bottom: 3rem;
     }
   }
 
-  h2 {
+  h3 {
     font-size: clamp(1.25rem, 3vw, 1.75rem);
     font-weight: bold;
     color: var(--color-primary);
@@ -346,7 +346,7 @@ const getClassStyle = (className) => {
   }
   
   @media (min-width: 640px) {
-    h2 {
+    h3 {
       margin-bottom: 1.5rem;
     }
   }
