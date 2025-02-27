@@ -150,3 +150,30 @@ https://sitechecker.pro/es/
 
 ##  Google Search Console: 
 definiing and implementing the meta tags & sitemap
+
+
+
+# ACTUAL SEO STRUCTURE: 
+1. ALFA BOX - Cross Training Tudela
+   1.1. Nuestras Clases
+       1.1.1. CrossFit
+       1.1.2. Clases de Iniciación
+       1.1.3. Open Box
+       1.1.4. Hyrox
+       1.1.5. Cross Training
+       1.1.6. Endurance
+       1.1.7. Halterofilia
+       1.1.8. Entrenamiento Personal
+   1.2. Nuestro Box
+       1.2.1. VEN A CONOCERNOS, EMPIEZA TU DESAFÍO
+   1.3. Cross Training, Hyrox y Halterofilia
+       1.3.1. ALFA BOX
+       1.3.2. Contacto
+       1.3.3. Síguenos
+
+
+# FALTAL: 
+1. Politica & Cookies --> guardar
+2. Performance & Stilos 
+3. Tarifas y elementos 
+4. Favicon
