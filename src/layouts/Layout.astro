@@ -18,7 +18,12 @@ const {
 import Analytics from '@vercel/analytics/astro'
 
 // Normalize the URL to remove index pages
-const normalizedPath = Astro.url.pathname.replace(/\/(index\.(html|php))$/, '/');
+const normalizedPath = Astro.url.pathname
+  .replace(/^\/(index\.(html|php))$/, '/') // Root level index files
+  .replace(/\/(index\.(html|php))$/, '/'); // Subdirectory index files
+ 
+
+
 ---
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">

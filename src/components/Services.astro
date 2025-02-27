@@ -4,18 +4,18 @@ const services = [
     title: "CrossFit",
     description: "Experimenta entrenamientos funcionales de alta intensidad diseñados para potenciar tu rendimiento integral."
   },
-  {
-    title: "Clases de Iniciación",
-    description: "Descubre y domina los fundamentos esenciales del CrossFit en un entorno acogedor."
-  },
+  // {
+  //   title: "Clases de Iniciación",
+  //   description: "Descubre y domina los fundamentos esenciales del CrossFit en un entorno acogedor."
+  // },
   {
     title: "Open Box",
     description: "Aprovecha un espacio flexible para practicar y perfeccionar tus habilidades a tu ritmo."
   },
-  {
-    title: "Hyrox",
-    description: "Participa en sesiones especializadas, guiadas por entrenadores certificados, para maximizar tu rendimiento."
-  },
+  // {
+  //   title: "Hyrox",
+  //   description: "Participa en sesiones especializadas, guiadas por entrenadores certificados, para maximizar tu rendimiento."
+  // },
   {
     title: "Cross Training",
     description: "Mejora tu condición física general con entrenamientos funcionales de alta intensidad y variedad."
@@ -37,7 +37,7 @@ const services = [
 <section id="servicios" class="py-20 bg-white">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold text-center mb-12 text-primary">Nuestras Clases</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {services.map(service => (
         <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-primary">
           <h3 class="text-xl font-semibold mb-4 text-primary">{service.title}</h3>
