@@ -78,6 +78,10 @@ vercel dev
 
 vercel --prod 
 
+* vercel with clean cache 
+vercel --force 
+
+
 # FAVICON: 
 https://github.com/withastro/astro/issues/6565
 
@@ -146,6 +150,9 @@ Would you like me to help you verify any of these steps or provide additional tr
 
 # SEO 
 PageSpeed Insights
+https://pagespeed.web.dev/
+
+Seo analitics: 
 https://sitechecker.pro/es/
 
 ##  Google Search Console: 

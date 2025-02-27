@@ -15,7 +15,15 @@ import InstagramFeed from '../components/InstagramFeed.astro';
 ---
 
 <Layout>
-  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYV11EF4L0"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PYV11EF4L0');
+  </script>
+
   <!-- Hidden H1 for SEO and screen readers -->
   <h1 class="sr-only">
     ALFA BOX - Cross Training Tudela

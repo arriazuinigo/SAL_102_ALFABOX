@@ -6,68 +6,90 @@
   <div class="image-slider h-full">
     <div class="image-container h-full">
       
-      <!-- First slide -->
+      <!-- First slide - with already-optimized WebP for angel_estiramientos -->
       <div class="slide active relative">
-        <!-- Preload first image -->
-        <link rel="preload" as="image" href="/images/angel_estiramientos.jpg" fetchpriority="high">
-        <img 
-          src="/images/angel_estiramientos.jpg"
-          alt="Group training" 
-          class="w-full h-full object-cover"
-          width="1920"
-          height="1080"
-          decoding="async"
-        >
+        <picture>
+          <!-- WebP format - already available -->
+          <source
+            srcset="/images/angel_estiramientos.webp"
+            type="image/webp"
+          />
+          <!-- Fallback JPG -->
+          <img 
+            src="/images/angel_estiramientos.jpg"
+            alt="Estiramientos" 
+            class="w-full h-full object-cover"
+            width="1920"
+            height="1080"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </picture>
         <div class="absolute inset-0 bg-black/50"></div>
       </div>
 
-      <!-- Second slide -->
+      <!-- Second slide - with already-optimized WebP for crossfit-training -->
       <div class="slide relative">
-        <img 
-          src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?q=80&w=2070"
-          alt="CrossFit training" 
-          class="w-full h-full object-cover"
-          loading="lazy"
-          width="1920"
-          height="1080"
-          decoding="async"
-        >
+        <picture>
+          <!-- WebP format - already available -->
+          <source
+            srcset="/images/crossfit-training.webp"
+            type="image/webp"
+          />
+          <!-- Fallback - use Coaches.jpg since no crossfit-training.jpg exists -->
+          <img 
+            src="/images/Coaches.jpg"
+            alt="CrossFit training" 
+            class="w-full h-full object-cover"
+            loading="lazy"
+            width="1920"
+            height="1080"
+            decoding="async"
+          />
+        </picture>
         <div class="absolute inset-0 bg-black/50"></div>
       </div>
 
-      <!-- Third slide -->
+      <!-- Third slide - with already-optimized WebP for group-training -->
       <div class="slide relative">
-        <img 
-          src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?q=80&w=2069"
-          alt="Group training" 
-          class="w-full h-full object-cover"
-          loading="lazy"
-          width="1920"
-          height="1080"
-          decoding="async"
-        >
+        <picture>
+          <!-- WebP format - already available -->
+          <source
+            srcset="/images/group-training.webp"
+            type="image/webp"
+          />
+          <!-- Fallback - use entrenamiento.jpg since no group-training.jpg exists -->
+          <img 
+            src="/images/entrenamiento.jpg"
+            alt="Group training" 
+            class="w-full h-full object-cover"
+            loading="lazy"
+            width="1920"
+            height="1080"
+            decoding="async"
+          />
+        </picture>
         <div class="absolute inset-0 bg-black/50"></div>
       </div>
     </div>
     
     <!-- Navigation Arrows -->
-    <button class="arrow left absolute top-1/2 left-4 transform -translate-y-1/2 z-20 text-white">
+    <button class="arrow left absolute top-1/2 left-4 transform -translate-y-1/2 z-20 text-white" aria-label="Previous slide">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="15 18 9 12 15 6"></polyline>
       </svg>
     </button>
-    <button class="arrow right absolute top-1/2 right-4 transform -translate-y-1/2 z-20 text-white">
+    <button class="arrow right absolute top-1/2 right-4 transform -translate-y-1/2 z-20 text-white" aria-label="Next slide">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="9 18 15 12 9 6"></polyline>
       </svg>
     </button>
     
-    <!-- Pagination Indicators - with correct initial state -->
-    <div class="pagination absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
-      <!-- Manual initialization with first dot active -->
-      <div class="pagination-dot active"></div>
-      <div class="pagination-dot"></div>
-      <div class="pagination-dot"></div>
+    <!-- Pagination Indicators - with correct initial state and ARIA labels -->
+    <div class="pagination absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3" role="tablist">
+      <div class="pagination-dot active" role="tab" aria-selected="true" aria-label="Slide 1" tabindex="0"></div>
+      <div class="pagination-dot" role="tab" aria-selected="false" aria-label="Slide 2" tabindex="0"></div>
+      <div class="pagination-dot" role="tab" aria-selected="false" aria-label="Slide 3" tabindex="0"></div>
     </div>
   </div>
   
@@ -132,6 +154,7 @@
   .pagination {
     padding: 6px 10px;
     border-radius: 20px;
+    background: rgba(0, 0, 0, 0.3);
   }
   
   .pagination-dot {
@@ -170,13 +193,23 @@
           // Make sure first dot is active
           if (i === 0) {
             dot.classList.add('active');
+            dot.setAttribute('aria-selected', 'true');
           } else {
             dot.classList.remove('active');
+            dot.setAttribute('aria-selected', 'false');
           }
           
           // Add click event listeners
           dot.addEventListener('click', () => {
             showSlide(i);
+          });
+          
+          // Add keyboard navigation
+          dot.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              showSlide(i);
+              e.preventDefault();
+            }
           });
         });
       } else {
@@ -185,12 +218,41 @@
         for (let i = 0; i < totalSlides; i++) {
           const dot = document.createElement('div');
           dot.classList.add('pagination-dot');
-          if (i === 0) dot.classList.add('active');
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', `Slide ${i+1}`);
+          dot.setAttribute('tabindex', '0');
+          
+          if (i === 0) {
+            dot.classList.add('active');
+            dot.setAttribute('aria-selected', 'true');
+          } else {
+            dot.setAttribute('aria-selected', 'false');
+          }
+          
           dot.addEventListener('click', () => {
             showSlide(i);
           });
+          
+          // Add keyboard navigation
+          dot.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              showSlide(i);
+              e.preventDefault();
+            }
+          });
+          
           pagination.appendChild(dot);
         }
+      }
+    }
+    
+    // Preload next slide image to improve perceived performance
+    function preloadNextSlide(currentIndex) {
+      const nextIndex = (currentIndex + 1) % totalSlides;
+      const nextSlideImg = slides[nextIndex].querySelector('img');
+      if (nextSlideImg && nextSlideImg.loading === 'lazy') {
+        // Change loading strategy for the next slide
+        nextSlideImg.loading = 'eager';
       }
     }
     
@@ -205,13 +267,18 @@
       dots.forEach((dot, i) => {
         if (i === index) {
           dot.classList.add('active');
+          dot.setAttribute('aria-selected', 'true');
         } else {
           dot.classList.remove('active');
+          dot.setAttribute('aria-selected', 'false');
         }
       });
       
       // Update current index
       currentImageIndex = index;
+      
+      // Preload next slide
+      preloadNextSlide(index);
       
       // Reset autoplay timer
       resetAutoplay();
@@ -248,7 +315,6 @@
       nextArrow.addEventListener('click', (e) => {
         e.preventDefault();
         nextSlide();
-        console.log('Next arrow clicked, showing slide', currentImageIndex);
       });
     }
     
@@ -256,9 +322,17 @@
       prevArrow.addEventListener('click', (e) => {
         e.preventDefault();
         previousSlide();
-        console.log('Previous arrow clicked, showing slide', currentImageIndex);
       });
     }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        previousSlide();
+      }
+    });
     
     // Ensure only the first slide is active initially
     slides.forEach((slide, index) => {
@@ -279,8 +353,10 @@
     
     document.querySelector('.image-slider')?.addEventListener('mouseleave', () => {
       startAutoplay();
-    });    
-    console.log('Custom image slider initialized with', totalSlides, 'slides');
+    });
+    
+    // Preload the second slide after the first one is loaded
+    preloadNextSlide(0);
   }
 
   // Initialize the slider when the document is ready
