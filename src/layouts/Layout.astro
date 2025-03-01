@@ -40,6 +40,9 @@ const normalizedPath = Astro.url.pathname
 
     <!-- Add canonical URL  // Normalize the URL to remove index pages -->
     <link rel="canonical" href={`https://alfabox.es${normalizedPath}`} />
+    <!-- XML Sitemap reference -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
 
     <!-- Favicon Configuration -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -47,6 +50,7 @@ const normalizedPath = Astro.url.pathname
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"/>
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
     <link rel="manifest" href="/manifest.json"/>
 
@@ -66,7 +70,8 @@ const normalizedPath = Astro.url.pathname
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://alfabox.es/" />
+    <!-- needed to have the same structure -->
+    <meta property="og:url" content={`https://alfabox.es${normalizedPath}`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://alfabox.es/Logo_cropped.png" />
@@ -92,7 +97,17 @@ const normalizedPath = Astro.url.pathname
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-W2BSQZ4N');</script>
     <!-- End Google Tag Manager -->
- 
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7XHLXPE6X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Q7XHLXPE6X');
+    </script>
 
     <!-- Local Business Schema -->
     <script type="application/ld+json">
@@ -139,7 +154,18 @@ const normalizedPath = Astro.url.pathname
         ]
       }
     </script>
-
+    <!-- // Modify your existing schema to include the logo property -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsClub",
+        "name": "ALFA BOX CrossFit Tudela",
+        "alternateName": "ALFA BOX",
+        "image": "https://alfabox.es/favicon.png",
+        "logo": "https://alfabox.es/favicon-192x192.png", // Add this line
+        // rest of your schema remains the same
+      }
+    </script>
     <Analytics/>
   </head>
   <body class="antialiased">
@@ -150,21 +176,41 @@ const normalizedPath = Astro.url.pathname
 
     <slot />
     <a 
-      href="https://wa.me/34680734560" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#128C7E] transition-colors z-50 flex items-center justify-center"
-      aria-label="Contactar por WhatsApp"
+    href="https://wa.me/34680734560" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#128C7E] transition-colors z-50 flex items-center justify-center"
+    aria-label="Contactar por WhatsApp"
+    data-gtm-track="click" 
+    data-gtm-url="https://wa.me/34680734560"
+    onclick="
+      // Prevent the default GTM link click tracking
+      event.stopPropagation();
+      
+      // Push a custom click event with the URL
+      dataLayer.push({
+        'event': 'gtm.click',
+        'gtm.element': this,
+        'gtm.elementUrl': 'https://wa.me/34680734560'
+      });
+      
+      // Allow a small delay for the tracking to complete before navigating
+      setTimeout(function() {
+        window.open('https://wa.me/34680734560', '_blank');
+      }, 100);
+      
+      return false;
+    "
+  >
+    <svg 
+      class="w-6 h-6" 
+      fill="currentColor" 
+      viewBox="0 0 32 32" 
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg 
-        class="w-6 h-6" 
-        fill="currentColor" 
-        viewBox="0 0 32 32" 
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M16.001 2.902c-7.233 0-13.099 5.866-13.099 13.099 0 2.311.602 4.57 1.746 6.556l-1.86 6.804 7.002-1.839c1.9.99 3.964 1.491 6.21 1.491h.001c7.233 0 13.099-5.866 13.099-13.099s-5.867-13.099-13.099-13.099zm0 24.254c-1.975 0-3.904-.52-5.598-1.505l-.4-.232-4.154 1.09 1.11-4.057-.26-.418c-1.063-1.713-1.622-3.682-1.622-5.671 0-6.003 4.883-10.885 10.885-10.885s10.885 4.883 10.885 10.885-4.883 10.885-10.885 10.885zm5.938-8.154c-.317-.16-1.884-.928-2.177-1.036-.293-.108-.506-.16-.72.16-.214.321-.828 1.036-1.016 1.243-.187.214-.374.24-.695.08-.321-.16-1.353-.502-2.576-1.6-.95-.848-1.592-1.895-1.78-2.214-.187-.32-.02-.49.134-.649.139-.142.299-.37.448-.556.15-.187.2-.32.3-.535.1-.214.05-.401-.025-.556-.075-.16-.716-1.723-.981-2.36-.26-.621-.521-.535-.716-.545-.187-.01-.401-.01-.616-.01-.214 0-.556.08-.849.401-.293.321-1.116 1.097-1.116 2.679 0 1.581 1.143 3.111 1.301 3.33.16.214 2.249 3.467 5.449 4.864.763.332 1.358.532 1.822.684.766.249 1.464.214 2.012.13.613-.09 1.885-.774 2.15-1.523.265-.748.265-1.389.185-1.523-.08-.124-.292-.198-.616-.348z"/>
-      </svg>
-    </a>
+      <path d="M16.001 2.902c-7.233 0-13.099 5.866-13.099 13.099 0 2.311.602 4.57 1.746 6.556l-1.86 6.804 7.002-1.839c1.9.99 3.964 1.491 6.21 1.491h.001c7.233 0 13.099-5.866 13.099-13.099s-5.867-13.099-13.099-13.099zm0 24.254c-1.975 0-3.904-.52-5.598-1.505l-.4-.232-4.154 1.09 1.11-4.057-.26-.418c-1.063-1.713-1.622-3.682-1.622-5.671 0-6.003 4.883-10.885 10.885-10.885s10.885 4.883 10.885 10.885-4.883 10.885-10.885 10.885zm5.938-8.154c-.317-.16-1.884-.928-2.177-1.036-.293-.108-.506-.16-.72.16-.214.321-.828 1.036-1.016 1.243-.187.214-.374.24-.695.08-.321-.16-1.353-.502-2.576-1.6-.95-.848-1.592-1.895-1.78-2.214-.187-.32-.02-.49.134-.649.139-.142.299-.37.448-.556.15-.187.2-.32.3-.535.1-.214.05-.401-.025-.556-.075-.16-.716-1.723-.981-2.36-.26-.621-.521-.535-.716-.545-.187-.01-.401-.01-.616-.01-.214 0-.556.08-.849.401-.293.321-1.116 1.097-1.116 2.679 0 1.581 1.143 3.111 1.301 3.33.16.214 2.249 3.467 5.449 4.864.763.332 1.358.532 1.822.684.766.249 1.464.214 2.012.13.613-.09 1.885-.774 2.15-1.523.265-.748.265-1.389.185-1.523-.08-.124-.292-.198-.616-.348z"/>
+    </svg>
+  </a>
   </body>
 </html>
 

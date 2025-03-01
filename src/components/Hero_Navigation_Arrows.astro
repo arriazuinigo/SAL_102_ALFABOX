@@ -19,6 +19,7 @@
             src="/images/angel_estiramientos.jpg"
             alt="Estiramientos" 
             class="w-full h-full object-cover"
+            loading="eager" 
             width="1920"
             height="1080"
             decoding="async"
@@ -63,10 +64,11 @@
             src="/images/entrenamiento.jpg"
             alt="Group training" 
             class="w-full h-full object-cover"
-            loading="lazy"
+            loading="eager" 
             width="1920"
             height="1080"
             decoding="async"
+            fetchpriority="high"  
           />
         </picture>
         <div class="absolute inset-0 bg-black/50"></div>
@@ -179,6 +181,22 @@
     let currentImageIndex = 0;
     let autoplayInterval;
     const slides = document.querySelectorAll('.slide');
+    slides.forEach((slide, index) => {
+      if (index === 0) {
+        slide.classList.add('active');
+        const img = slide.querySelector('img');
+        if (img) img.loading = 'eager';
+      } else {
+        slide.classList.remove('active');
+        // Load other slides after a short delay
+        setTimeout(() => {
+          const img = slide.querySelector('img');
+          if (img && img.loading === 'lazy') {
+            img.loading = 'eager';
+          }
+        }, 1000); // 1 second delay
+      }
+    });
     const totalSlides = slides.length;
     const pagination = document.querySelector('.pagination');
     
@@ -359,12 +377,7 @@
     preloadNextSlide(0);
   }
 
-  // Initialize the slider when the document is ready
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(initializeSlider, 1);
-  } else {
-    document.addEventListener('DOMContentLoaded', initializeSlider);
-  }
+  initializeSlider();
   
   // Reinitialize on Astro page load events
   document.addEventListener('astro:page-load', initializeSlider);

@@ -184,3 +184,34 @@ definiing and implementing the meta tags & sitemap
 2. Performance & Stilos 
 3. Tarifas y elementos 
 4. Favicon
+
+
+# Google Analytics: 
+https://www.youtube.com/watch?v=oxkawKfekKw&ab_channel=AnalyticsMania-GoogleAnalytics%26TagManager 
+
+
+# Buttons:
+Button click tracking with Google Tag Manager || Track clicks with GTM
+https://www.youtube.com/watch?v=ghUwerH1fsw&ab_channel=AnalyticsMania-GoogleAnalytics%26TagManager
+
+
+
+UTM : 
+https://www.youtube.com/watch?v=Fl5OcKM22Ro&ab_channel=AnalyticsMania-GoogleAnalytics%26TagManager
+
+
+Additionally, I'd recommend:
+
+Improve page-specific schema markup - Consider adding specific schema for each page (ContactPage schema for the contact page, etc.)
+Create a sitemap.xml if you haven't already
+Enhance internal linking between pages
+Verify Google Search Console setup is properly configured
+Submit URLs for indexing through Google Search Console
+
+
+# Review in 24h
+https://analytics.google.com/analytics/web/#/p480272821/realtime/overview?params=_u..nav%3Dmaui%26_u..pageSize%3D25&collectionId=business-objectives
+
+https://tagmanager.google.com/#/versions/accounts/6271028395/containers/207379682/versions/6
+
+
