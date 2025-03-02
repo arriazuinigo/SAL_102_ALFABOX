@@ -3,6 +3,7 @@ title: "Dynamic Routing in Astro"
 description: "Learn how to implement dynamic routes in Astro using the [slug] file naming convention."
 date: "2023-07-10"
 image: "/images/dynamic-routes.jpg"
+youtubeId: "dQw4w9WgXcQ"
 ---
 
 # Dynamic Routing in Astro

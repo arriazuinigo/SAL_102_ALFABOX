@@ -7,7 +7,7 @@ interface Props {
   image?: string;
 }
 
-const { title, description, date, slug, image = "/images/default-blog.jpg" } = Astro.props;
+const { title, description, date, slug, image = "/imagesBlog/default-blog.jpg" } = Astro.props;
 const formattedDate = new Date(date).toLocaleDateString('en-US', { 
   year: 'numeric', 
   month: 'long', 
@@ -15,74 +15,28 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 });
 ---
 
-<article class="card blog-card">
-  <a href={`/blog/${slug}`}>
-    <img src={image} alt={title} loading="lazy" />
+<article class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow border border-gray-200">
+  <a href={`/blog/${slug}`} class="block overflow-hidden">
+    <div class="aspect-square overflow-hidden">
+      <img 
+        src={image} 
+        alt={title} 
+        class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        loading="lazy"
+      />
+    </div>
   </a>
-  <div class="content">
-    <p class="date">{formattedDate}</p>
-    <h2><a href={`/blog/${slug}`}>{title}</a></h2>
-    <p>{description}</p>
-    <a href={`/blog/${slug}`} class="btn">Read More</a>
+  <div class="p-6">
+    <p class="text-gray-600 text-sm mb-2">{formattedDate}</p>
+    <h2 class="text-xl font-bold text-primary mb-3 hover:text-[#247A83] transition-colors">
+      <a href={`/blog/${slug}`}>{title}</a>
+    </h2>
+    <p class="text-gray-600 mb-4 line-clamp-3">{description}</p>
+    <a 
+      href={`/blog/${slug}`} 
+      class="inline-block bg-primary text-white px-4 py-2 rounded-md hover:bg-[#247A83] transition-colors"
+    >
+      Leer más
+    </a>
   </div>
 </article>
-
-<style>
-  .blog-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    padding: 0;
-  }
-
-  .blog-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
-    transition: transform 0.3s;
-  }
-
-  .blog-card:hover img {
-    transform: scale(1.05);
-  }
-
-  .content {
-    padding: 1.5rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .date {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  h2 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-
-  h2 a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  h2 a:hover {
-    color: var(--primary-color);
-  }
-
-  p {
-    margin-bottom: 1.5rem;
-  }
-
-  .btn {
-    margin-top: auto;
-    align-self: flex-start;
-  }
-</style>
