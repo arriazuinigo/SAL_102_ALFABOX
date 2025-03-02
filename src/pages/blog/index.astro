@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import Header from '../../components/Header.astro';
+
+import { getCollection } from 'astro:content';
+
+// Get all blog posts and sort by date
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// SEO metadata
+const title = "Blog Posts | Astro Blog";
+const description = "Browse through all our articles and tutorials about Astro, web development, and more.";
+const canonicalURL = new URL('/blog', Astro.site || 'https://yourdomain.com').href;
+const imageURL = new URL('/images/hero-bg.jpg', Astro.site || 'https://yourdomain.com').href;
+---
+
+<Layout>
+  <!-- SEO Meta Tags -->
+  <meta slot="head" name="title" content={title} />
+  <meta slot="head" name="description" content={description} />
+  <meta slot="head" property="og:type" content="website" />
+  <meta slot="head" property="og:url" content={canonicalURL} />
+  <meta slot="head" property="og:title" content={title} />
+  <meta slot="head" property="og:description" content={description} />
+  <meta slot="head" property="og:image" content={imageURL} />
+  <meta slot="head" property="twitter:card" content="summary_large_image" />
+  <meta slot="head" property="twitter:url" content={canonicalURL} />
+  <meta slot="head" property="twitter:title" content={title} />
+  <meta slot="head" property="twitter:description" content={description} />
+  <meta slot="head" property="twitter:image" content={imageURL} />
+  <link slot="head" rel="canonical" href={canonicalURL} />
+
+  <h1>Blog Posts</h1>
+  <p>Browse through all our articles and tutorials.</p>
+  <Header />
+  <div class="blog-grid">
+    {sortedPosts.map(post => (
+      <BlogCard
+        title={post.data.title}
+        description={post.data.description}
+        date={post.data.date}
+        slug={post.slug}
+        image={post.data.image}
+      />
+    ))}
+  </div>
+</Layout>

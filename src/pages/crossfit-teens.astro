@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+ 
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Horarios - Crossfit para Teens en ALFA BOX" 
+  description="Descubre nuestros horarios y programas de Crossfit adaptados para jóvenes. Mejora tu rendimiento, haz nuevos amigos y disfruta de un estilo de vida activo en ALFA BOX Tudela."
+>
+  <!-- Hidden H1 for SEO and screen readers -->
+  <h1 class="sr-only">
+    ALFA BOX - Horarios y Actividades para Teens y Jóvenes
+  </h1>
+
+  <Header />
+ 
+
+  <!-- Sección: Beneficios del Crossfit para Jóvenes -->
+  <section class="py-32 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-4 text-primary">
+        Beneficios del Crossfit para Jóvenes
+      </h2>
+      <p class="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+        El Crossfit es ideal para mejorar la resistencia, la fuerza y la coordinación. Además, fomenta el trabajo en equipo, la disciplina y un estilo de vida saludable.
+      </p>
+      <!-- Imagen ilustrativa -->
+      <div class="flex justify-center mb-12">
+        <img 
+          src="/images/crossfit-teens.jpg" 
+          alt="Jóvenes practicando Crossfit" 
+          class="rounded-lg shadow-lg max-w-full h-auto"
+        />
+      </div>
+      <ul class="list-disc list-inside text-gray-600 max-w-3xl mx-auto">
+        <li>Mejora tu fuerza y resistencia física.</li>
+        <li>Incrementa la coordinación y agilidad.</li>
+        <li>Fomenta la disciplina y el trabajo en equipo.</li>
+        <li>Establece hábitos saludables desde temprana edad.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Sección: Programas Especiales para Teens -->
+  <section class="py-32 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-4 text-primary">
+        Programas Especiales para Teens
+      </h2>
+      <p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+        Nuestros programas están diseñados para adaptarse a las necesidades de los jóvenes, combinando entrenamiento, diversión y socialización.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-primary">
+          <h3 class="text-2xl font-bold text-primary mb-4">Entrenamiento Básico</h3>
+          <p class="text-gray-600">
+            Una introducción perfecta para aprender las técnicas básicas y mejorar tu condición física.
+          </p>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-primary">
+          <h3 class="text-2xl font-bold text-primary mb-4">Entrenamiento Avanzado</h3>
+          <p class="text-gray-600">
+            Para jóvenes con experiencia que buscan superar nuevos retos y alcanzar un alto rendimiento.
+          </p>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-primary">
+          <h3 class="text-2xl font-bold text-primary mb-4">Clases Grupales</h3>
+          <p class="text-gray-600">
+            Sesiones dinámicas en grupo para aprender, divertirse y formar parte de una comunidad activa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Testimonios de Jóvenes -->
+  <section class="py-32 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-4 text-primary">
+        Testimonios de Jóvenes
+      </h2>
+      <p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+        Conoce las experiencias de jóvenes que han transformado su vida a través del Crossfit en ALFA BOX.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+          <p class="text-gray-600 italic">
+            "Desde que comencé, he notado una gran mejoría en mi rendimiento y he hecho amigos increíbles. ¡Recomiendo totalmente estas clases!"
+          </p>
+          <p class="mt-4 font-bold text-primary">- Alex, 16 años</p>
+        </div>
+        <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+          <p class="text-gray-600 italic">
+            "El ambiente es genial y los entrenamientos son retadores pero muy divertidos. Me motivan a superarme cada día."
+          </p>
+          <p class="mt-4 font-bold text-primary">- Carla, 17 años</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Preguntas Frecuentes -->
+  <section class="py-32 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-8 text-primary">
+        Preguntas Frecuentes
+      </h2>
+      <div class="space-y-8 max-w-4xl mx-auto">
+        <div class="border-b border-gray-200 pb-6">
+          <h3 class="text-xl font-semibold mb-2">¿A qué edad puedo empezar?</h3>
+          <p class="text-gray-600">
+            Nuestros programas están abiertos para jóvenes a partir de los 13 años, con clases adaptadas a cada nivel.
+          </p>
+        </div>
+        <div class="border-b border-gray-200 pb-6">
+          <h3 class="text-xl font-semibold mb-2">¿Necesito tener experiencia previa?</h3>
+          <p class="text-gray-600">
+            No, todas nuestras clases están diseñadas para principiantes. Los entrenamientos se adaptan progresivamente según el nivel de cada alumno.
+          </p>
+        </div>
+        <div class="border-b border-gray-200 pb-6">
+          <h3 class="text-xl font-semibold mb-2">¿Qué beneficios ofrece el Crossfit para jóvenes?</h3>
+          <p class="text-gray-600">
+            Mejora la fuerza, resistencia y coordinación, al mismo tiempo que fomenta la disciplina, el trabajo en equipo y hábitos saludables.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">¿Cómo puedo inscribirme?</h3>
+          <p class="text-gray-600">
+            Puedes inscribirte directamente a través de nuestro sitio web o acercarte a nuestras instalaciones para una evaluación inicial gratuita.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

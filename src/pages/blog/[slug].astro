@@ -1,0 +1,206 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
+import { getCollection } from 'astro:content';
+
+// Generate paths for all blog posts
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+// Get the blog post data
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// Format the date
+const formattedDate = new Date(entry.data.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+// SEO metadata
+const title = `${entry.data.title} | Astro Blog`;
+const description = entry.data.description;
+const canonicalURL = new URL(`/blog/${entry.slug}`, Astro.site || 'https://yourdomain.com').href;
+const imageURL = new URL(entry.data.image || '/images/default-blog.jpg', Astro.site || 'https://yourdomain.com').href;
+---
+
+<Layout>
+  <!-- SEO Meta Tags -->
+  <meta slot="head" name="title" content={title} />
+  <meta slot="head" name="description" content={description} />
+  <meta slot="head" property="og:type" content="article" />
+  <meta slot="head" property="og:url" content={canonicalURL} />
+  <meta slot="head" property="og:title" content={title} />
+  <meta slot="head" property="og:description" content={description} />
+  <meta slot="head" property="og:image" content={imageURL} />
+  <meta slot="head" property="twitter:card" content="summary_large_image" />
+  <meta slot="head" property="twitter:url" content={canonicalURL} />
+  <meta slot="head" property="twitter:title" content={title} />
+  <meta slot="head" property="twitter:description" content={description} />
+  <meta slot="head" property="twitter:image" content={imageURL} />
+  <link slot="head" rel="canonical" href={canonicalURL} />
+  
+  <!-- Article Published/Modified Time for SEO -->
+  <meta slot="head" property="article:published_time" content={new Date(entry.data.date).toISOString()} />
+  
+  <!-- JSON-LD Structured Data for Blog Post -->
+  <script slot="head" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "${entry.data.title}",
+      "description": "${entry.data.description}",
+      "image": "${imageURL}",
+      "datePublished": "${new Date(entry.data.date).toISOString()}",
+      "author": {
+        "@type": "Person",
+        "name": "Astro Blog Author"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Astro Blog",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://yourdomain.com/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "${canonicalURL}"
+      }
+    }
+  </script>
+
+  <article class="blog-post">
+    <div class="post-header">
+      <h1>{entry.data.title}</h1>
+      <p class="post-meta">Published on {formattedDate}</p>
+      
+      {entry.data.image && (
+        <img src={entry.data.image} alt={entry.data.title} class="featured-image" />
+      )}
+    </div>
+    
+    <div class="post-content">
+      <Content />
+      
+      {entry.data.youtubeId && (
+        <div class="video-section">
+          <h2>Watch Related Video</h2>
+          <YouTubeEmbed id={entry.data.youtubeId} title={entry.data.title} />
+        </div>
+      )}
+    </div>
+
+    <!-- Social Sharing -->
+    <div class="share-section">
+      <h3>Share this article</h3>
+      <div class="share-buttons">
+        <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(entry.data.title)}&url=${encodeURIComponent(canonicalURL)}`} target="_blank" rel="noopener noreferrer" class="share-button twitter">
+          Twitter
+        </a>
+        <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalURL)}`} target="_blank" rel="noopener noreferrer" class="share-button facebook">
+          Facebook
+        </a>
+        <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(canonicalURL)}&title=${encodeURIComponent(entry.data.title)}`} target="_blank" rel="noopener noreferrer" class="share-button linkedin">
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .blog-post {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+  }
+
+  .post-header {
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-meta {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .post-content {
+    line-height: 1.7;
+    font-size: 1.1rem;
+  }
+
+  .post-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-content p {
+    margin-bottom: 1.5rem;
+  }
+
+  .video-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+  }
+
+  .share-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+  }
+
+  .share-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .share-button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+  }
+
+  .share-button:hover {
+    opacity: 0.9;
+  }
+
+  .twitter {
+    background-color: #1DA1F2;
+  }
+
+  .facebook {
+    background-color: #4267B2;
+  }
+
+  .linkedin {
+    background-color: #0077B5;
+  }
+</style>

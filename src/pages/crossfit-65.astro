@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Schedule from '../components/Schedule.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Horarios - Actividades y Crossfit para Mayores de 65 años en ALFA BOX" 
+  description="Descubre cómo el Crossfit adaptado puede mejorar tu movilidad, fuerza y bienestar. Consulta horarios, información y respuestas a las preguntas frecuentes para mayores de 65 años en ALFA BOX Tudela."
+>
+  <!-- Hidden H1 for SEO and screen readers -->
+  <h1 class="sr-only">
+    ALFA BOX - Horarios y Actividades de Crossfit para Mayores de 65 años
+  </h1>
+
+  <Header />
+
+  <!-- Sección de Beneficios del Crossfit para Mayores -->
+  <section class="py-32 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-4 text-primary">
+        Beneficios del Crossfit para Personas Mayores de 65 años
+      </h2>
+      <p class="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+        El Crossfit adaptado ayuda a mejorar la movilidad, el equilibrio y la fuerza muscular. Además, fomenta la socialización, mejora la salud cardiovascular y se ajusta a las necesidades individuales.
+      </p>
+      <!-- Imagen ilustrativa -->
+      <div class="flex justify-center mb-12">
+        <img 
+          src="/images/crossfit-mayores.jpg" 
+          alt="Personas mayores practicando Crossfit" 
+          class="rounded-lg shadow-lg max-w-full h-auto"
+        />
+      </div>
+      <div class="space-y-6">
+        <p class="text-gray-600">
+          Para las personas mayores, el Crossfit puede ser una excelente herramienta para mantener y mejorar la salud física y mental. Entre sus principales beneficios destacan:
+        </p>
+        <ul class="list-disc list-inside text-gray-600">
+          <li>Incremento de la fuerza y resistencia muscular.</li>
+          <li>Mejora del equilibrio y coordinación, reduciendo el riesgo de caídas.</li>
+          <li>Aumento de la flexibilidad y movilidad articular.</li>
+          <li>Beneficios cardiovasculares y respiratorios.</li>
+          <li>Fomento de la socialización y el bienestar emocional.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ sobre Crossfit para mayores de 65 años -->
+  <section class="py-32 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-8 text-primary">
+        Preguntas Frecuentes sobre Crossfit para Mayores
+      </h2>
+      <div class="space-y-8 max-w-4xl mx-auto">
+        <div class="border-b border-gray-200 pb-6">
+          <h3 class="text-xl font-semibold mb-2">¿Es seguro practicar Crossfit a partir de los 65 años?</h3>
+          <p class="text-gray-600">
+            Sí, siempre y cuando se realice bajo la supervisión de profesionales y se adapten los ejercicios a las capacidades individuales.
+          </p>
+        </div>
+        <div class="border-b border-gray-200 pb-6">
+          <h3 class="text-xl font-semibold mb-2">¿Qué modificaciones se hacen en las rutinas?</h3>
+          <p class="text-gray-600">
+            Se ajustan las cargas, el rango de movimientos y se incorporan ejercicios de bajo impacto para garantizar la seguridad y efectividad del entrenamiento.
+          </p>
+        </div>
+        <div class="border-b border-gray-200 pb-6">
+          <h3 class="text-xl font-semibold mb-2">¿Necesito tener experiencia previa?</h3>
+          <p class="text-gray-600">
+            No, las sesiones están diseñadas para principiantes y se adaptan según el nivel y la condición física de cada participante.
+          </p>
+        </div>
+        <div class="border-b border-gray-200 pb-6">
+          <h3 class="text-xl font-semibold mb-2">¿Cuáles son los beneficios principales para la salud?</h3>
+          <p class="text-gray-600">
+            Además de mejorar la fuerza, la resistencia y la movilidad, el Crossfit fomenta un estilo de vida activo, promueve la socialización y ayuda a mantener la independencia en la vida diaria.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">¿Cómo puedo comenzar?</h3>
+          <p class="text-gray-600">
+            Puedes inscribirte en una clase de prueba en ALFA BOX Tudela o contactarnos para una evaluación inicial gratuita, donde se te recomendará el plan que mejor se adapte a tus necesidades.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
