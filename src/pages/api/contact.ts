@@ -14,14 +14,10 @@ export const POST: APIRoute = async ({ request }) => {
     // Validate required inputs
     if (!name || !email || !message) {
       return new Response(
-        JSON.stringify({
-          error: 'Nombre, email y mensaje son campos requeridos'
-        }),
+        JSON.stringify({ error: 'Nombre, email y mensaje son campos requeridos' }),
         {
           status: 400,
-          headers: {
-            'Content-Type': 'application/json'
-          }
+          headers: { 'Content-Type': 'application/json' }
         }
       );
     }
@@ -30,14 +26,10 @@ export const POST: APIRoute = async ({ request }) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return new Response(
-        JSON.stringify({
-          error: 'Formato de email inválido'
-        }),
+        JSON.stringify({ error: 'Formato de email inválido' }),
         {
           status: 400,
-          headers: {
-            'Content-Type': 'application/json'
-          }
+          headers: { 'Content-Type': 'application/json' }
         }
       );
     }
@@ -47,14 +39,10 @@ export const POST: APIRoute = async ({ request }) => {
       const phoneRegex = /^[0-9+]{9,}$/;
       if (!phoneRegex.test(phone)) {
         return new Response(
-          JSON.stringify({
-            error: 'Formato de teléfono inválido'
-          }),
+          JSON.stringify({ error: 'Formato de teléfono inválido' }),
           {
             status: 400,
-            headers: {
-              'Content-Type': 'application/json'
-            }
+            headers: { 'Content-Type': 'application/json' }
           }
         );
       }
@@ -86,9 +74,7 @@ export const POST: APIRoute = async ({ request }) => {
         }),
         {
           status: 200,
-          headers: {
-            'Content-Type': 'application/json'
-          }
+          headers: { 'Content-Type': 'application/json' }
         }
       );
     } catch (error) {
@@ -98,15 +84,15 @@ export const POST: APIRoute = async ({ request }) => {
   } catch (error) {
     console.error('Error general:', error);
     return new Response(
-      JSON.stringify({
-        error: 'Ocurrió un error al procesar tu solicitud'
-      }),
+      JSON.stringify({ error: 'Ocurrió un error al procesar tu solicitud' }),
       {
         status: 500,
-        headers: {
-          'Content-Type': 'application/json'
-        }
+        headers: { 'Content-Type': 'application/json' }
       }
     );
   }
 };
+
+export async function get(request: Request) {
+  return new Response('GET method is not supported', { status: 405 });
+}

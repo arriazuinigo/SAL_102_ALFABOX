@@ -9,7 +9,7 @@ export default defineConfig({
     site: 'https://alfabox.es',
     adapter: vercel(),
     integrations: [sitemap(), tailwind()],
-    // output: 'server', // genera problemas blog --> error 
+    output: 'server', // genera problemas blog --> error 
     vite: {
       envDir: '.'
     },

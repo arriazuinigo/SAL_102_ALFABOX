@@ -101,3 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
     new ContactForm(formElement as HTMLFormElement);
   }
 });
+
+
+if (typeof window !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    const formElement = document.querySelector('form');
+    if (formElement) {
+      new ContactForm(formElement as HTMLFormElement);
+    }
+  });
+}

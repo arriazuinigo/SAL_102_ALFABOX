@@ -5,6 +5,8 @@ import Footer from '../../components/Footer.astro';
 import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
 import { getCollection } from 'astro:content';
 
+export const prerender = true;
+
 // Generate paths for all blog posts
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
@@ -26,6 +28,10 @@ if (!entry || !entry.data) {
 console.log("Entry slug:", entry.slug);
 console.log("Entry data:", entry.data);
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//  FIXING MAIN ELEMENTS: 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 let Content;
 try {
   console.log("About to render entry");
@@ -41,6 +47,23 @@ try {
     throw new Error("Error rendering blog entry: Unknown error type");
   }
 }
+
+
+// In [slug].astro, enhance your error logging
+try {
+  console.log("About to render entry with data:", JSON.stringify(entry.data, null, 2));
+  const rendered = await entry.render();
+  console.log("Render successful");
+  Content = rendered.Content;
+} catch (error) {
+  console.error(`Detailed render error for ${entry.slug}:`, error);
+  console.error("Stack trace:", error.stack);
+  // Handle the error more gracefully in production
+  Content = () => `<div>Error loading content: ${error.message}</div>`;
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 const formattedDate = new Date(entry.data.date).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -124,10 +147,18 @@ const description = entry.data.description;
             </a>
           </div>
         </div>
+ 
+        <div class="mt-12 flex justify-center">
+          <a 
+            href="/contacto" 
+            class="bg-primary px-8 py-3 rounded-full font-semibold hover:bg-primary-light transition-colors text-center text-white">
+            Prueba una clase gratis
+          </a>
+        </div>
       </article>
     </div>
   </section>
-  
+
   <Footer />
 </Layout>
 
@@ -245,4 +276,5 @@ const description = entry.data.description;
     border-radius: 0.5rem;
     overflow: hidden;
   }
+ 
 </style>
