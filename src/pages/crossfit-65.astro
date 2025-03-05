@@ -3,6 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Schedule from '../components/Schedule.astro';
 import Footer from '../components/Footer.astro';
+
+
+ 
+import BlogCard from '../components/BlogCard.astro';
+
+
+// Fetch the specific markdown file for alfalongevity
+const [longevityPost] = await Astro.glob('../content/blog/crossfit-longevity.md');
 ---
 
 <Layout 
@@ -42,6 +50,8 @@ import Footer from '../components/Footer.astro';
         </a>
       </div>
 
+
+
       <div class="mt-12 space-y-6">
         <p class="text-gray-600">
           Para las personas mayores, el Crossfit puede ser una excelente herramienta para mantener y mejorar la salud física y mental. Entre sus principales beneficios destacan:
@@ -57,6 +67,18 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 place-items-center max-w-6xl mx-auto">
+      <BlogCard 
+        title={longevityPost.frontmatter.title} 
+        description={longevityPost.frontmatter.description} 
+        date={longevityPost.frontmatter.date} 
+        slug={longevityPost.frontmatter.slug} 
+        image={longevityPost.frontmatter.image} 
+      />
+    </div>
+  </div>
+  
   <!-- FAQ sobre Crossfit para mayores de 65 años -->
   <section class="py-32 bg-gray-50">
     <div class="container mx-auto px-4">
