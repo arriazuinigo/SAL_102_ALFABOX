@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import App from './competiciones/App';
+import { Analytics } from '@vercel/analytics/react';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+  <main class="container">
+    <App client:load />
+  </main>
+  <Analytics />
+</Layout>
