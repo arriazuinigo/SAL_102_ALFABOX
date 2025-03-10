@@ -79,7 +79,7 @@ Además de los entrenamientos de CrossFit, se recomienda la integración de acti
 
 En Tudela, muchos practicantes de CrossFit han comprobado que la disciplina no es lesiva, sino una fuente de bienestar y transformación. A continuación, se presentan algunos testimonios ficticios que reflejan la experiencia de la comunidad:
 
-> "Desde que empecé a entrenar CrossFit en mi box local de Tudela, he notado una mejora en mi fuerza y resistencia. La clave ha sido aprender la técnica adecuada y respetar los tiempos de recuperación."  
+> "Desde que empecé a entrenar CrossFit en ALFA BOX, he notado una mejora en mi fuerza y resistencia. La clave ha sido aprender la técnica adecuada y respetar los tiempos de recuperación."   
 > *– Carlos, 29 años, entusiasta del CrossFit en Tudela*
 
 > "Siempre tenía miedo de lesionarme, pero con el apoyo de mis entrenadores y la progresión en mis ejercicios, hoy me siento más fuerte y saludable. El CrossFit en Tudela me ha cambiado la vida."  

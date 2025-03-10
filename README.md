@@ -222,3 +222,14 @@ https://www.youtube.com/@alfaboxtn/featured
 
 tiktok: https://www.tiktok.com/@alfaboxtn
 
+
+
+# Tareas pendientes : 
+ver seo 
+tfg 
+otros negocios 
+Saas 
+hablar con otros --> publicidad 
+manana entregas 3 --> coscolin / charela / escritora 
+version de la web con javi 
+mensaje de whatsapp directamente cuando llega 

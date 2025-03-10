@@ -3,7 +3,7 @@ title: "¿Cuántos días se puede entrenar a la semana?"
 description: "Descubre cuántos días a la semana entrenar CrossFit en Tudela para maximizar resultados y mejorar tu salud en Navarra. ¡Conoce la frecuencia óptima!"
 date: "2025-02-22"
 author: "Entrenador Local"
-image: "/images/crossfit-dias-semana.webp"  # Imagen destacada: Fotografía de un box de CrossFit en Tudela con deportistas en plena acción
+image: "/images/crossfit-dias-semana.jpg"  # Imagen destacada: Fotografía de un box de CrossFit en Tudela con deportistas en plena acción
 tags: ["CrossFit", "Fitness", "Tudela", "Navarra", "Entrenamiento", "Salud"]
 slug: "resultados-crossfit-tudela-dias-semana"
 ---
@@ -98,7 +98,7 @@ Además, si buscas más información sobre el estilo de vida fitness en la regi�
 
 En resumen, para maximizar los beneficios del CrossFit en Tudela es recomendable entrenar entre tres y cinco días a la semana, siempre adaptando la frecuencia a tu nivel de experiencia, objetivos y capacidad de recuperación. Integrar rutinas variadas, prestar atención al descanso y nutrirse adecuadamente son factores esenciales para evitar lesiones y alcanzar resultados óptimos.
 
-Si eres de Tudela o de las localidades cercanas y buscas mejorar tu rendimiento físico, te animamos a probar estas recomendaciones en tu box local. Explora las opciones de entrenamiento, participa en eventos deportivos y forma parte de la comunidad de CrossFit en Navarra. ¡El cambio empieza hoy!
+Si eres de Tudela o de las localidades cercanas y buscas mejorar tu rendimiento físico, te animamos a probar estas recomendaciones en ALFA BOX. Explora las opciones de entrenamiento, participa en eventos deportivos y forma parte de la comunidad de CrossFit en Navarra. ¡El cambio empieza hoy!
 
 Para seguir aprendiendo sobre fitness y salud, visita [nuestros artículos relacionados](/blog/) y mantente informado sobre las últimas tendencias y consejos de entrenamiento.[¡Únete a la comunidad y transforma tu vida hoy mismo!](/contacto)
 
