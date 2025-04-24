@@ -13,7 +13,6 @@
     "@astrojs/react": "^4.2.1",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.0",
-    "@astrojs/vercel": "^8.0.4",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
@@ -21,7 +20,7 @@
     "@supabase/supabase-js": "^2.49.1",
     "@types/nodemailer": "^6.4.17",
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.4.1",
+    "astro": "^5.6.1",
     "lucide-react": "^0.479.0",
     "nodemailer": "^6.10.0",
     "react": "^19.0.0",
@@ -36,5 +35,8 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@astrojs/vercel": "^8.0.4"
+  }
 }

@@ -1,0 +1,209 @@
+---
+// Define the table-style pricing plans including yearly prices
+const planTable = [
+  { 
+    name: "ROOKIE 8", 
+    classes: "8 CLASES", 
+    price: "41",
+    bonus: "+10€",
+    discount3: "117€",
+    discount6: "222€",
+    yearPrice: "420€"
+  },
+  { 
+    name: "SCALED 12", 
+    classes: "12 CLASES", 
+    price: "57",
+    bonus: "+10€",
+    discount3: "163€",
+    discount6: "308€",
+    yearPrice: "582€"
+  },
+  { 
+    name: "PRO 16", 
+    classes: "16 CLASES", 
+    price: "67",
+    bonus: "+10€",
+    discount3: "191€",
+    discount6: "362€",
+    yearPrice: "684€"
+  },
+  { 
+    name: "INFINITY", 
+    classes: "ILIMITADO", 
+    price: "89",
+    bonus: "-",
+    discount3: "254€",
+    discount6: "481€",
+    yearPrice: "908€"
+  },
+  { 
+    name: "RX ILIMITADAS", 
+    classes: "CLASES ILIMITADAS", 
+    price: "75",
+    bonus: "+10€",
+    discount3: "-",
+    discount6: "-",
+    yearPrice: "-"
+  },
+  { 
+    name: "MADRUGADORES", 
+    classes: "ILIMITADA CLASES MAÑ.", 
+    price: "62",
+    bonus: "+10€",
+    discount3: "-",
+    discount6: "-",
+    yearPrice: "-"
+  },
+  { 
+    name: "BONO DIA", 
+    classes: "", 
+    price: "12",
+    bonus: "-",
+    discount3: "-",
+    discount6: "-",
+    yearPrice: "-"
+  },
+  { 
+    name: "BONO 10", 
+    classes: "", 
+    price: "95",
+    bonus: "-",
+    discount3: "-",
+    discount6: "-",
+    yearPrice: "-"
+  }
+];
+---
+
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-4 text-[#009baf]">Nuestras Tarifas</h2>
+    <p class="text-gray-700 text-center mb-12 max-w-2xl mx-auto">
+      Elige el plan que mejor se adapte a tus objetivos. Todos nuestros planes incluyen acceso a las instalaciones durante el horario de las clases.
+    </p>
+    
+    <!-- Enhanced Table Style Pricing inspired by WodBuster -->
+    <div class="max-w-6xl mx-auto">
+      <div class="overflow-x-auto rounded-lg shadow-md">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="bg-[#009baf] text-white">
+              <th class="py-4 px-4 text-left font-bold text-lg border-r border-[#0a8594]">PLAN</th>
+              <th class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">CLASES</th>
+              <th class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">PRECIO/MES</th>
+              <th class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">BONUS OPEN
+                <div class="text-sm font-medium opacity-90">10h </div>
+              </th>
+              <th class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">
+                PRECIO 3 MESES
+                <div class="text-sm font-medium opacity-90">5% DCTO</div>
+              </th>
+              <th class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">
+                PRECIO 6 MESES
+                <div class="text-sm font-medium opacity-90">10% DCTO</div>
+              </th>
+              <th class="py-4 px-4 text-center font-bold text-lg">
+                PRECIO ANUAL
+                <div class="text-sm font-medium opacity-90">15% DCTO</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {planTable.map((plan, index) => (
+              <tr class={`border-b border-gray-200 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} hover:bg-gray-100 transition-colors`}>
+                <td class="py-4 px-4 text-left font-bold text-gray-800 border-r border-gray-200">{plan.name}</td>
+                <td class="py-4 px-4 text-center text-gray-600 border-r border-gray-200">
+                  {plan.classes.includes("\n") ? (
+                    <div>
+                      {plan.classes.split("\n").map((line, i) => (
+                        <div class={i === 0 ? "font-medium" : "text-sm text-gray-500 mt-1"}>{line}</div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div class="font-medium">{plan.classes}</div>
+                  )}
+                </td>
+                <td class="py-4 px-4 text-center font-bold text-xl text-[#009baf] border-r border-gray-200">{plan.price}€</td>
+                <td class="py-4 px-4 text-center font-medium text-green-600 border-r border-gray-200">{plan.bonus}/mes </td>
+                <td class="py-4 px-4 text-center font-bold text-[#009baf] border-r border-gray-200">{plan.discount3}</td>
+                <td class="py-4 px-4 text-center font-bold text-[#009baf] border-r border-gray-200">{plan.discount6}</td>
+                <td class="py-4 px-4 text-center font-bold text-[#009baf]">{plan.yearPrice}/año</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+        {["ROOKIE 8", "SCALED 12", "PRO 16"].map((planName) => {
+          const plan = planTable.find(p => p.name === planName);
+          return (
+            <a
+              href="/contacto"
+              class="block bg-[#009baf] text-white text-center py-3 rounded-lg hover:bg-[#007d8d] transition-colors font-medium"
+            >
+              {planName}
+
+              {/* - {plan?.price}€/mes */}
+            
+            </a>
+          );
+        })}
+      </div>
+
+      <div class="mt-8 bg-gray-50 p-6 rounded-lg border border-gray-200">
+        <h3 class="text-lg font-semibold mb-3 text-[#009baf]">Detalles importantes</h3>
+        <ul class="space-y-2 text-gray-700">
+          <li class="flex items-start">
+            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span>Matrícula <strong>GRATIS</strong> al inscribirte online</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span>Los precios trimestrales, semestrales y anuales requieren pago único por adelantado</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span>El Bonus Open te permite utilizar las instalaciones fuera del horario de clases programadas</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span>Todos los planes incluyen acceso a nuestra app de seguimiento de progreso</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-16 max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold text-center mb-8 text-primary">Preguntas Frecuentes</h2>
+        <div class="space-y-6">
+          <div class="border-b border-gray-200 pb-6">
+            <h3 class="text-lg font-semibold mb-2">¿Hay permanencia mínima?</h3>
+            <p class="text-gray-600">No, nuestros planes son mensuales y puedes cancelar cuando quieras sin compromiso.</p>
+          </div>
+          <div class="border-b border-gray-200 pb-6">
+            <h3 class="text-lg font-semibold mb-2">¿Incluyen matrícula?</h3>
+            <p class="text-gray-600"> No hay matrícula.</p>
+          </div>
+          <div class="border-b border-gray-200 pb-6">
+            <h3 class="text-lg font-semibold mb-2">¿Puedo cambiar de plan?</h3>
+            <p class="text-gray-600">Sí, puedes cambiar de plan al inicio de cada mes según tus necesidades.</p>
+          </div>
+          <div class="pb-6">
+            <h3 class="text-lg font-semibold mb-2">¿Ofrecen descuentos para estudiantes?</h3>
+            <p class="text-gray-600">No, actualmente no, pero estamos buscando formas de implementarlo.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

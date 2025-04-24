@@ -49,9 +49,15 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     try {
+      // Notice the updated "to" field as an array of email addresses:
       const { data: emailData, error } = await resend.emails.send({
-        from: 'onboarding@resend.dev', // Replace with your verified domain
-        to: 'iarriazu96@gmail.com',
+        from: 'onboarding@resend.dev', // Ensure your sender domain is verified
+        to: [
+          'iarriazu96@gmail.com',
+          'alfaboxtn@gmail.com',
+          'inigo.arriazu@dataoverkill.com',
+          'AngelMB202@gmail.com'
+        ],
         subject: 'Nuevo Mensaje de Contacto - Alfabox',
         html: `
           <h2>Nuevo Mensaje de Contacto</h2>
