@@ -1,25 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Schedule from '../components/Schedule.astro';
 import Footer from '../components/Footer.astro';
 
 
  
 import BlogCard from '../components/BlogCard.astro';
+import { getEntry } from 'astro:content';
 
 
-// Fetch the specific markdown file for alfalongevity
-const [longevityPost] = await Astro.glob('../content/blog/crossfit-longevity.md');
+// Featured post for this programme. Note the slug is overridden in the markdown
+// frontmatter, so it is not the filename (crossfit-longevity.md).
+const longevityPost = await getEntry('blog', 'crossfit-en-la-tercera-edad');
 ---
 
 <Layout 
-  title="Horarios - Actividades y Crossfit para Mayores de 65 años en ALFA BOX" 
+  title="ALFA LONGEVITY - Crossfit para Mayores de 65 años en Tudela" 
   description="Descubre cómo el Crossfit adaptado puede mejorar tu movilidad, fuerza y bienestar. Consulta horarios, información y respuestas a las preguntas frecuentes para mayores de 65 años en ALFA BOX Tudela."
 >
   <!-- Hidden H1 for SEO and screen readers -->
   <h1 class="sr-only">
-    ALFA BOX - Horarios y Actividades de Crossfit para Mayores de 65 años
+    ALFA BOX - Crossfit adaptado para personas mayores de 65 años
   </h1>
 
   <Header />
@@ -70,11 +71,11 @@ const [longevityPost] = await Astro.glob('../content/blog/crossfit-longevity.md'
   <div class="container mx-auto px-4 py-12">
     <div class="grid grid-cols-1 place-items-center max-w-6xl mx-auto">
       <BlogCard 
-        title={longevityPost.frontmatter.title} 
-        description={longevityPost.frontmatter.description} 
-        date={longevityPost.frontmatter.date} 
-        slug={longevityPost.frontmatter.slug} 
-        image={longevityPost.frontmatter.image} 
+        title={longevityPost.data.title} 
+        description={longevityPost.data.description} 
+        date={longevityPost.data.date} 
+        slug={longevityPost.slug} 
+        image={longevityPost.data.image} 
       />
     </div>
   </div>

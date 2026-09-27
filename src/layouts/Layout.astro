@@ -21,6 +21,13 @@ import Analytics from '@vercel/analytics/astro'
 const normalizedPath = Astro.url.pathname
   .replace(/^\/(index\.(html|php))$/, '/') // Root level index files
   .replace(/\/(index\.(html|php))$/, '/'); // Subdirectory index files
+
+// @astrojs/sitemap emits directory-style URLs with a trailing slash
+// (https://alfabox.es/tarifas/). The canonical must use the same form, or the
+// sitemap and the canonical tag advertise two different URLs for one page.
+// Both forms serve 200 (Astro's default trailingSlash: 'ignore'), so this is
+// the only thing that tells Google which one is authoritative.
+const canonicalUrl = `https://alfabox.es${normalizedPath.endsWith('/') ? normalizedPath : `${normalizedPath}/`}`;
  
 
 
@@ -41,9 +48,9 @@ const normalizedPath = Astro.url.pathname
     <meta name="google" content="notranslate" />
 
     <!-- Add canonical URL  // Normalize the URL to remove index pages -->
-    <link rel="canonical" href={`https://alfabox.es${normalizedPath}`} />
+    <link rel="canonical" href={canonicalUrl} />
     <!-- XML Sitemap reference -->
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml">
 
 
     <!-- Favicon Configuration -->
@@ -60,7 +67,7 @@ const normalizedPath = Astro.url.pathname
     <meta name="google-site-verification" content="google982462742dc59bf6" />
 
     <!-- Web App Manifest -->
-    <meta name="theme-color" content="rgba(46,156,167,255)"/>
+    <meta name="theme-color" content="#2E9CA7"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
     <meta name="apple-mobile-web-app-title" content="ALFA BOX"/>
@@ -73,7 +80,7 @@ const normalizedPath = Astro.url.pathname
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <!-- needed to have the same structure -->
-    <meta property="og:url" content={`https://alfabox.es${normalizedPath}`} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://alfabox.es/Logo_cropped.png" />
@@ -112,62 +119,48 @@ const normalizedPath = Astro.url.pathname
     </script>
 
     <!-- Local Business Schema -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SportsClub",
-        "name": "ALFA BOX CrossFit Tudela",
-        "alternateName": "ALFA BOX",
-        "image": "https://alfabox.es/favicon.png",
-        "description": "¡Cross Training es para todos! Descubre un sistema de ejercicios funcionales ideal para crossfit, crosstraining e hyrox. Mejora tu fuerza y acondicionamiento con rutinas variadas y únete a una comunidad apasionada.",
-        "slogan": "Entrena, comparte, crece",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Polígono Industrial Municipal, Vial H",
-          "addressLocality": "Tudela",
-          "postalCode": "31500",
-          "addressRegion": "Navarra",
-          "addressCountry": "ES"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": "42.0667",
-          "longitude": "-1.6067"
-        },
-        "url": "https://alfabox.es",
-        "telephone": "+34680734560",
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "07:00",
-            "closes": "21:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "07:00",
-            "closes": "14:00"
-          }
-        ],
-        "sameAs": [
-          "https://www.instagram.com/alfabox.es/",
-          "https://www.facebook.com/alfabox.es/"
-        ]
-      }
-    </script>
-    <!-- // Modify your existing schema to include the logo property -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SportsClub",
-        "name": "ALFA BOX CrossFit Tudela",
-        "alternateName": "ALFA BOX",
-        "image": "https://alfabox.es/favicon.png",
-        "logo": "https://alfabox.es/favicon-192x192.png", // Add this line
-        // rest of your schema remains the same
-      }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SportsClub",
+      "name": "ALFA BOX CrossFit Tudela",
+      "alternateName": "ALFA BOX",
+      "image": "https://alfabox.es/favicon.png",
+      "logo": "https://alfabox.es/favicon-192x192.png",
+      "description": description,
+      "slogan": "Entrena, comparte, crece",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Polígono Industrial Municipal, Vial H",
+        "addressLocality": "Tudela",
+        "postalCode": "31500",
+        "addressRegion": "Navarra",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "42.0667",
+        "longitude": "-1.6067"
+      },
+      "url": "https://alfabox.es",
+      "telephone": "+34680734560",
+      // Instalaciones abiertas 06:00-22:00 todos los días. Los domingos
+      // sólo hay Open Box (sin clases dirigidas), ver src/components/Schedule.astro.
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday", "Tuesday", "Wednesday", "Thursday",
+            "Friday", "Saturday", "Sunday"
+          ],
+          "opens": "06:00",
+          "closes": "22:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/alfabox.es/",
+        "https://www.facebook.com/alfabox.es/"
+      ]
+    })} />
     <Analytics/>
   </head>
   <body class="antialiased">
@@ -219,6 +212,8 @@ const normalizedPath = Astro.url.pathname
 <style is:global>
   :root {
     --color-primary: #2e9ca7;
+    /* Used by Schedule.astro's booking-button hover; matches tailwind primary-light. */
+    --color-primary-light: rgba(46, 156, 167, 0.8);
     --color-gray-700: #4a5568;
     --color-gray-600: #718096;
     --color-bg-gray-50: #f9fafb;

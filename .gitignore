@@ -1,2 +1,14 @@
 node_modules
 .vercel
+
+# Build output
+dist
+.astro
+
+# Secrets — never commit. Use .env.example as the reference.
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store

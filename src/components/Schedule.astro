@@ -227,6 +227,15 @@ const schedule = [
  
 const days = ["Hora", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 
+// Legend built from classColors itself, so a colour change in one place updates both.
+// Class types that share a colour in the table are grouped into a single entry.
+const legend = Object.entries(classColors).reduce((acc, [name, color]) => {
+  const existing = acc.find(item => item.color === color);
+  if (existing) existing.names.push(name);
+  else acc.push({ color, names: [name] });
+  return acc;
+}, []);
+
 const getClassStyle = (className) => {
   if (!className) return '';
   const bgColor = classColors[className];
@@ -269,6 +278,18 @@ const getClassStyle = (className) => {
       </table>
     </div>
 
+    <div class="legend">
+      <h3 class="legend-title">Tipos de clase</h3>
+      <ul class="legend-list">
+        {legend.map(item => (
+          <li class="legend-item">
+            <span class="legend-swatch" style={`background-color: ${item.color};`}></span>
+            <span>{item.names.join(" / ")}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
     <div class="booking-section">
       <h3>Reserva tu clase</h3>
       <p>
@@ -294,13 +315,14 @@ const getClassStyle = (className) => {
 <style>
   /* Layout */
   section {
-    padding: 2rem 0;
+    /* Top padding clears the 72px fixed header (Header.astro: py-3 + h-12 logo). */
+    padding: 6rem 0 2rem;
     background-color: white;
   }
   
   @media (min-width: 768px) {
     section {
-      padding: 4rem 0;
+      padding: 7rem 0 4rem;
     }
   }
   
@@ -407,6 +429,43 @@ const getClassStyle = (className) => {
   .time-cell {
     font-weight: 600;
     white-space: nowrap;
+  }
+
+  /* Legend */
+  .legend {
+    margin-top: 1.5rem;
+  }
+
+  .legend-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .legend-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    color: #4b5563;
+  }
+
+  .legend-swatch {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
   }
 
   /* Booking section */

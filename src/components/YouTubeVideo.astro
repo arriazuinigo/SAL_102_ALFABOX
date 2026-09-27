@@ -1,8 +1,12 @@
 ---
 // src/components/YouTubeVideo.astro
-// This component now has the video ID hard-coded for demonstration
-const videoId = "WxazE0_cipo";
-const title = "YouTube video";
+// Lazy YouTube facade: renders the thumbnail and only loads the iframe on click.
+interface Props {
+  videoId: string;
+  title?: string;
+}
+
+const { videoId, title = "Cross Training en AlfaBox" } = Astro.props;
 const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 ---
 
@@ -12,9 +16,9 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
     Cross Training, Hyrox y Halterofilia
   </h2>
   <div class="text-2xl text-center mb-4 text-[#BBA14F]">QUÉ ES Y EN QUÉ CONSISTE</div>
-  
+
   <div class="grid md:grid-cols-2 gap-8 items-center">
-    <h3 class="space-y-4">
+    <div class="space-y-4">
       <p class="text-lg">
         Cross Training es para todo el mundo! Es un sistema de entrenamiento de fuerza y acondicionamiento basado en ejercicios funcionales constantemente variados.
       </p>
@@ -26,15 +30,19 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
       >
         Apúntate ahora
       </a>
-    </h3>
-    
+    </div>
+
     <div class="youtube-container relative w-full pt-[56.25%]">
-      <div class="youtube-player" data-id="WxazE0_cipo">
+      <div class="youtube-player" data-id={videoId}>
         <div class="absolute top-0 left-0 w-full h-full">
-          <img src="https://img.youtube.com/vi/WxazE0_cipo/maxresdefault.jpg" class="w-full h-full object-cover rounded-lg" alt="YouTube video">
+          <img src={thumbnailUrl} class="w-full h-full object-cover rounded-lg" alt={title} loading="lazy" />
           <div class="absolute inset-0 flex items-center justify-center">
-            <button class="play-button w-16 h-16 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">
-              <svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <button
+              type="button"
+              class="play-button w-16 h-16 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors"
+              aria-label={`Reproducir vídeo: ${title}`}
+            >
+              <svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M8 5v14l11-7z"/>
               </svg>
             </button>
@@ -48,28 +56,31 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 <script>
   function setupYouTubePlayer() {
     document.querySelectorAll('.youtube-player').forEach(player => {
+      if (player.hasAttribute('data-ready')) return;
+      player.setAttribute('data-ready', '');
+
       const videoId = player.getAttribute('data-id');
       const playButton = player.querySelector('.play-button');
-      
-      if (playButton) {
-        playButton.addEventListener('click', () => {
-          const iframe = document.createElement('iframe');
-          iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
-          iframe.setAttribute('title', 'YouTube video player');
-          iframe.setAttribute('frameborder', '0');
-          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-          iframe.setAttribute('allowfullscreen', '');
-          iframe.classList.add('absolute', 'top-0', 'left-0', 'w-full', 'h-full', 'rounded-lg');
-          
-          // Replace the thumbnail with the iframe
-          const wrapper = player.querySelector('div');
+      if (!playButton) return;
+
+      playButton.addEventListener('click', () => {
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+        iframe.setAttribute('title', 'YouTube video player');
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.classList.add('absolute', 'top-0', 'left-0', 'w-full', 'h-full', 'rounded-lg');
+
+        const wrapper = player.querySelector('div');
+        if (wrapper) {
           wrapper.innerHTML = '';
           wrapper.appendChild(iframe);
-        });
-      }
+        }
+      });
     });
   }
-  
-  // Run the setup after the DOM is fully loaded
-  document.addEventListener('DOMContentLoaded', setupYouTubePlayer);
+
+  setupYouTubePlayer();
+  document.addEventListener('astro:page-load', setupYouTubePlayer);
 </script>

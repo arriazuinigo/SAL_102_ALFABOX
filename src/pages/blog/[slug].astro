@@ -10,62 +10,21 @@ export const prerender = true;
 // Generate paths for all blog posts
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
-  console.log("Found blog entries:", blogEntries.map(e => e.slug));
   return blogEntries.map(entry => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
 }
 
-// Get the blog post data
 const { entry } = Astro.props;
 
-// Ensure entry exists before rendering
 if (!entry || !entry.data) {
   throw new Error("Blog entry not found or missing required frontmatter.");
 }
 
-console.log("Entry slug:", entry.slug);
-console.log("Entry data:", entry.data);
+const { Content } = await entry.render();
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//  FIXING MAIN ELEMENTS: 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-let Content;
-try {
-  console.log("About to render entry");
-  const rendered = await entry.render();
-  console.log("Render successful");
-  Content = rendered.Content;
-} catch (error) {
-  if (error instanceof Error) {
-    console.error(`Render error for ${entry.slug}:`, error);
-    throw new Error(`Error rendering blog entry: ${error.message}`);
-  } else {
-    console.error(`Render error for ${entry.slug}:`, error);
-    throw new Error("Error rendering blog entry: Unknown error type");
-  }
-}
-
-
-// In [slug].astro, enhance your error logging
-try {
-  console.log("About to render entry with data:", JSON.stringify(entry.data, null, 2));
-  const rendered = await entry.render();
-  console.log("Render successful");
-  Content = rendered.Content;
-} catch (error) {
-  console.error(`Detailed render error for ${entry.slug}:`, error);
-  console.error("Stack trace:", error.stack);
-  // Handle the error more gracefully in production
-  Content = () => `<div>Error loading content: ${error.message}</div>`;
-}
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-const formattedDate = new Date(entry.data.date).toLocaleDateString('en-US', {
+const formattedDate = new Date(entry.data.date).toLocaleDateString('es-ES', {
   year: 'numeric',
   month: 'long',
   day: 'numeric'

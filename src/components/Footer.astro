@@ -4,6 +4,7 @@ const instagramUrl = import.meta.env.INSTAGRAM_LINK;
 const facebookUrl = import.meta.env.FACEBOOK_LINK;
 const tiktokUrl = import.meta.env.TIKTOK_LINK;
 const youtubeUrl = import.meta.env.YOUTUBE_LINK;
+const currentYear = new Date().getFullYear();
 ---
 <footer class="bg-primary text-white py-12">
   <div class="container mx-auto px-4">
@@ -51,7 +52,7 @@ const youtubeUrl = import.meta.env.YOUTUBE_LINK;
       </div>
     </div>
     <div class="mt-8 pt-8 border-t border-white/20 text-center text-white/80">
-      <p class="mb-4">&copy; 2024 ALFA BOX. Todos los derechos reservados.</p>
+      <p class="mb-4">&copy; {currentYear} ALFA BOX. Todos los derechos reservados.</p>
       <p class="text-sm mb-6">
         <a href="https://www.techweb.es/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
           Creado por TechWeb

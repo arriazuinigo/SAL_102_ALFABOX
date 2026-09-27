@@ -52,6 +52,12 @@
           ></textarea>
         </div>
 
+        <!-- Honeypot: hidden from real users; bots that fill it are silently dropped. -->
+        <div class="hidden" aria-hidden="true">
+          <label for="website">No rellenar</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
         <div id="formMessage" class="hidden text-center p-4 rounded-lg"></div>
         
         <button 

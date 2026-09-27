@@ -1,109 +1,137 @@
 ---
-// Define the table-style pricing plans including yearly prices
+// Tarifas vigentes desde el 1 de septiembre de 2026.
+// `oldPrice` es la tarifa anterior (se muestra tachada); dejar vacío si no cambió.
+// Los importes trimestral/semestral/anual ya llevan aplicado el 5% / 10% / 15%.
+const priceStartDate = "1 de septiembre de 2026";
+
 const planTable = [
-  { 
-    name: "ROOKIE 8", 
-    classes: "8 CLASES", 
-    price: "41",
+  {
+    name: "ROOKIE",
+    classes: "9 CLASES",
+    price: "50",
+    oldPrice: "41",
     bonus: "+10€",
-    discount3: "117€",
-    discount6: "222€",
-    yearPrice: "420€"
+    discount3: "142,50",
+    discount6: "270",
+    yearPrice: "510"
   },
-  { 
-    name: "SCALED 12", 
-    classes: "12 CLASES", 
-    price: "57",
+  {
+    name: "SCALED 12",
+    classes: "12 CLASES",
+    price: "61",
+    oldPrice: "57",
     bonus: "+10€",
-    discount3: "163€",
-    discount6: "308€",
-    yearPrice: "582€"
+    discount3: "173,85",
+    discount6: "329,40",
+    yearPrice: "622,20"
   },
-  { 
-    name: "PRO 16", 
-    classes: "16 CLASES", 
-    price: "67",
+  {
+    name: "PRO 16",
+    classes: "16 CLASES",
+    price: "71",
+    oldPrice: "67",
     bonus: "+10€",
-    discount3: "191€",
-    discount6: "362€",
-    yearPrice: "684€"
+    discount3: "202,35",
+    discount6: "383,40",
+    yearPrice: "724,20"
   },
-  { 
-    name: "INFINITY", 
-    classes: "ILIMITADO", 
+  {
+    name: "MADRUGADORES",
+    classes: "ILIMITADA CLASES MAÑ.",
+    price: "71",
+    oldPrice: "62",
+    bonus: "+10€",
+    discount3: "202,35",
+    discount6: "383,40",
+    yearPrice: "724,20"
+  },
+  {
+    name: "OPEN ILIMITADO",
+    classes: "OPEN BOX ILIMITADO",
+    price: "79",
+    oldPrice: "75",
+    bonus: "+10€",
+    discount3: "225,15",
+    discount6: "426,60",
+    yearPrice: "805,80"
+  },
+  {
+    name: "ILIMITADA",
+    classes: "CLASES ILIMITADAS",
     price: "89",
+    oldPrice: "",
     bonus: "-",
-    discount3: "254€",
-    discount6: "481€",
-    yearPrice: "908€"
+    discount3: "253,65",
+    discount6: "480,60",
+    yearPrice: "907,80"
   },
-  { 
-    name: "RX ILIMITADAS", 
-    classes: "CLASES ILIMITADAS", 
-    price: "75",
-    bonus: "+10€",
-    discount3: "-",
-    discount6: "-",
-    yearPrice: "-"
-  },
-  { 
-    name: "MADRUGADORES", 
-    classes: "ILIMITADA CLASES MAÑ.", 
-    price: "62",
-    bonus: "+10€",
-    discount3: "-",
-    discount6: "-",
-    yearPrice: "-"
-  },
-  { 
-    name: "BONO DIA", 
-    classes: "", 
+  {
+    name: "BONO DIA",
+    classes: "",
     price: "12",
+    oldPrice: "",
     bonus: "-",
     discount3: "-",
     discount6: "-",
     yearPrice: "-"
   },
-  { 
-    name: "BONO 10", 
-    classes: "", 
+  {
+    name: "BONO 10",
+    classes: "",
     price: "95",
+    oldPrice: "",
     bonus: "-",
     discount3: "-",
     discount6: "-",
     yearPrice: "-"
   }
 ];
+
+// Los importes se guardan sin símbolo; aquí se formatean (y "-" se deja como guion).
+const hasValue = (value: string) => Boolean(value) && value !== "-";
 ---
 
-<section class="py-16 bg-white">
+<!-- pt-24 clears the 72px fixed header; this is the first section on /tarifas. -->
+<section class="pt-24 pb-16 bg-white">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold text-center mb-4 text-[#009baf]">Nuestras Tarifas</h2>
-    <p class="text-gray-700 text-center mb-12 max-w-2xl mx-auto">
+    <p class="text-gray-700 text-center mb-6 max-w-2xl mx-auto">
       Elige el plan que mejor se adapte a tus objetivos. Todos nuestros planes incluyen acceso a las instalaciones durante el horario de las clases.
     </p>
-    
+
+    <div class="max-w-3xl mx-auto mb-12 bg-[#009baf]/10 border border-[#009baf] rounded-lg px-6 py-4 text-center">
+      <p class="font-semibold text-[#009baf]">
+        Nuevas tarifas en vigor desde el {priceStartDate}
+      </p>
+      <p class="text-gray-700 text-sm mt-1">
+        El plan ROOKIE pasa de 8 a 9 clases al mes y la tarifa ILIMITADA se mantiene sin cambios.
+      </p>
+    </div>
+
     <!-- Enhanced Table Style Pricing inspired by WodBuster -->
     <div class="max-w-6xl mx-auto">
       <div class="overflow-x-auto rounded-lg shadow-md">
         <table class="w-full border-collapse">
+          <caption class="sr-only">
+            Tarifas mensuales de ALFA BOX y precios con descuento por pago anticipado trimestral, semestral y anual
+          </caption>
           <thead>
             <tr class="bg-[#009baf] text-white">
-              <th class="py-4 px-4 text-left font-bold text-lg border-r border-[#0a8594]">PLAN</th>
-              <th class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">CLASES</th>
-              <th class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">PRECIO/MES</th>
-              <th class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">BONUS OPEN
+              <th scope="col" class="py-4 px-4 text-left font-bold text-lg border-r border-[#0a8594]">PLAN</th>
+              <th scope="col" class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">CLASES</th>
+              <th scope="col" class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">PRECIO/MES</th>
+              <th scope="col" class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">BONUS OPEN
                 <div class="text-sm font-medium opacity-90">10h </div>
               </th>
-              <th class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">
+              <th scope="col" class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">
                 PRECIO 3 MESES
                 <div class="text-sm font-medium opacity-90">5% DCTO</div>
               </th>
-              <th class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">
+              <th scope="col" class="py-4 px-4 text-center font-bold text-lg border-r border-[#0a8594]">
                 PRECIO 6 MESES
                 <div class="text-sm font-medium opacity-90">10% DCTO</div>
               </th>
-              <th class="py-4 px-4 text-center font-bold text-lg">
+              <th scope="col" class="py-4 px-4 text-center font-bold text-lg">
                 PRECIO ANUAL
                 <div class="text-sm font-medium opacity-90">15% DCTO</div>
               </th>
@@ -112,23 +140,28 @@ const planTable = [
           <tbody>
             {planTable.map((plan, index) => (
               <tr class={`border-b border-gray-200 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} hover:bg-gray-100 transition-colors`}>
-                <td class="py-4 px-4 text-left font-bold text-gray-800 border-r border-gray-200">{plan.name}</td>
+                <th scope="row" class="py-4 px-4 text-left font-bold text-gray-800 border-r border-gray-200">{plan.name}</th>
                 <td class="py-4 px-4 text-center text-gray-600 border-r border-gray-200">
-                  {plan.classes.includes("\n") ? (
-                    <div>
-                      {plan.classes.split("\n").map((line, i) => (
-                        <div class={i === 0 ? "font-medium" : "text-sm text-gray-500 mt-1"}>{line}</div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div class="font-medium">{plan.classes}</div>
+                  <div class="font-medium">{plan.classes}</div>
+                </td>
+                <td class="py-4 px-4 text-center border-r border-gray-200">
+                  <div class="font-bold text-xl text-[#009baf]">{plan.price} €</div>
+                  {plan.oldPrice && (
+                    <div class="text-sm text-gray-500 line-through">antes {plan.oldPrice} €</div>
                   )}
                 </td>
-                <td class="py-4 px-4 text-center font-bold text-xl text-[#009baf] border-r border-gray-200">{plan.price}€</td>
-                <td class="py-4 px-4 text-center font-medium text-green-600 border-r border-gray-200">{plan.bonus}/mes </td>
-                <td class="py-4 px-4 text-center font-bold text-[#009baf] border-r border-gray-200">{plan.discount3}</td>
-                <td class="py-4 px-4 text-center font-bold text-[#009baf] border-r border-gray-200">{plan.discount6}</td>
-                <td class="py-4 px-4 text-center font-bold text-[#009baf]">{plan.yearPrice}/año</td>
+                <td class="py-4 px-4 text-center font-medium text-green-600 border-r border-gray-200">
+                  {hasValue(plan.bonus) ? `${plan.bonus}/mes` : '-'}
+                </td>
+                <td class="py-4 px-4 text-center font-bold text-[#009baf] border-r border-gray-200">
+                  {hasValue(plan.discount3) ? `${plan.discount3} €` : '-'}
+                </td>
+                <td class="py-4 px-4 text-center font-bold text-[#009baf] border-r border-gray-200">
+                  {hasValue(plan.discount6) ? `${plan.discount6} €` : '-'}
+                </td>
+                <td class="py-4 px-4 text-center font-bold text-[#009baf]">
+                  {hasValue(plan.yearPrice) ? `${plan.yearPrice} €/año` : '-'}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -136,45 +169,52 @@ const planTable = [
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-        {["ROOKIE 8", "SCALED 12", "PRO 16"].map((planName) => {
-          const plan = planTable.find(p => p.name === planName);
-          return (
-            <a
-              href="/contacto"
-              class="block bg-[#009baf] text-white text-center py-3 rounded-lg hover:bg-[#007d8d] transition-colors font-medium"
-            >
-              {planName}
+        {["ROOKIE", "SCALED 12", "PRO 16"].map((planName) => (
+          <a
+            href="/contacto"
+            class="block bg-[#009baf] text-white text-center py-3 rounded-lg hover:bg-[#007d8d] transition-colors font-medium"
+          >
+            {planName}
+          </a>
+        ))}
+      </div>
 
-              {/* - {plan?.price}€/mes */}
-            
-            </a>
-          );
-        })}
+      <div class="mt-8 bg-gray-50 p-6 rounded-lg border border-gray-200">
+        <h3 class="text-lg font-semibold mb-3 text-[#009baf]">Bonificaciones por pago anticipado</h3>
+        <p class="text-gray-700 mb-4">
+          Si prefieres pagar por adelantado, aplicamos un descuento sobre el precio mensual:
+          <strong>5% al trimestre</strong>, <strong>10% al semestre</strong> y <strong>15% al año</strong>.
+          Los importes ya con descuento son los que aparecen en la tabla.
+        </p>
+        <p class="text-gray-700">
+          Además, si abonas tu mensualidad <strong>en efectivo</strong> tienes un
+          <strong>5% de descuento adicional</strong>.
+        </p>
       </div>
 
       <div class="mt-8 bg-gray-50 p-6 rounded-lg border border-gray-200">
         <h3 class="text-lg font-semibold mb-3 text-[#009baf]">Detalles importantes</h3>
         <ul class="space-y-2 text-gray-700">
           <li class="flex items-start">
-            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
             <span>Matrícula <strong>GRATIS</strong> al inscribirte online</span>
           </li>
           <li class="flex items-start">
-            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
             <span>Los precios trimestrales, semestrales y anuales requieren pago único por adelantado</span>
           </li>
           <li class="flex items-start">
-            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
             <span>El Bonus Open te permite utilizar las instalaciones fuera del horario de clases programadas</span>
           </li>
           <li class="flex items-start">
-            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-[#009baf] mr-2 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
             <span>Todos los planes incluyen acceso a nuestra app de seguimiento de progreso</span>
@@ -185,6 +225,10 @@ const planTable = [
       <div class="mt-16 max-w-3xl mx-auto">
         <h2 class="text-2xl font-bold text-center mb-8 text-primary">Preguntas Frecuentes</h2>
         <div class="space-y-6">
+          <div class="border-b border-gray-200 pb-6">
+            <h3 class="text-lg font-semibold mb-2">¿Desde cuándo se aplican los nuevos precios?</h3>
+            <p class="text-gray-600">Desde el {priceStartDate}. Hasta esa fecha se mantienen las tarifas anteriores.</p>
+          </div>
           <div class="border-b border-gray-200 pb-6">
             <h3 class="text-lg font-semibold mb-2">¿Hay permanencia mínima?</h3>
             <p class="text-gray-600">No, nuestros planes son mensuales y puedes cancelar cuando quieras sin compromiso.</p>

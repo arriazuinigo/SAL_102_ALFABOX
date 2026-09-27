@@ -1,7 +1,7 @@
 ---
 title: "CrossFit en la Tercera Edad"
 description: "Beneficios, Evidencia Científica y Calidad de Vida"
-date: "2025-03-5"
+date: "2025-03-05"
 author: "Entrenador Local"
 image: "/images/crossfit-longevity.jpg"  # Imagen destacada: Fotografía de un box de CrossFit en Tudela con deportistas en plena acción
 tags: ["CrossFit", "Fitness", "Tudela", "Navarra", "Entrenamiento", "Salud"]
