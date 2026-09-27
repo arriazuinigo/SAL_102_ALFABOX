@@ -1,6 +1,5 @@
 ---
 // Tarifas vigentes desde el 1 de septiembre de 2026.
-// `oldPrice` es la tarifa anterior (se muestra tachada); dejar vacío si no cambió.
 // Los importes trimestral/semestral/anual ya llevan aplicado el 5% / 10% / 15%.
 const priceStartDate = "1 de septiembre de 2026";
 
@@ -9,7 +8,6 @@ const planTable = [
     name: "ROOKIE",
     classes: "9 CLASES",
     price: "50",
-    oldPrice: "41",
     bonus: "+10€",
     discount3: "142,50",
     discount6: "270",
@@ -19,7 +17,6 @@ const planTable = [
     name: "SCALED 12",
     classes: "12 CLASES",
     price: "61",
-    oldPrice: "57",
     bonus: "+10€",
     discount3: "173,85",
     discount6: "329,40",
@@ -29,7 +26,6 @@ const planTable = [
     name: "PRO 16",
     classes: "16 CLASES",
     price: "71",
-    oldPrice: "67",
     bonus: "+10€",
     discount3: "202,35",
     discount6: "383,40",
@@ -39,7 +35,6 @@ const planTable = [
     name: "MADRUGADORES",
     classes: "ILIMITADA CLASES MAÑ.",
     price: "71",
-    oldPrice: "62",
     bonus: "+10€",
     discount3: "202,35",
     discount6: "383,40",
@@ -49,7 +44,6 @@ const planTable = [
     name: "OPEN ILIMITADO",
     classes: "OPEN BOX ILIMITADO",
     price: "79",
-    oldPrice: "75",
     bonus: "+10€",
     discount3: "225,15",
     discount6: "426,60",
@@ -59,7 +53,6 @@ const planTable = [
     name: "ILIMITADA",
     classes: "CLASES ILIMITADAS",
     price: "89",
-    oldPrice: "",
     bonus: "-",
     discount3: "253,65",
     discount6: "480,60",
@@ -69,7 +62,6 @@ const planTable = [
     name: "BONO DIA",
     classes: "",
     price: "12",
-    oldPrice: "",
     bonus: "-",
     discount3: "-",
     discount6: "-",
@@ -79,7 +71,6 @@ const planTable = [
     name: "BONO 10",
     classes: "",
     price: "95",
-    oldPrice: "",
     bonus: "-",
     discount3: "-",
     discount6: "-",
@@ -146,9 +137,6 @@ const hasValue = (value: string) => Boolean(value) && value !== "-";
                 </td>
                 <td class="py-4 px-4 text-center border-r border-gray-200">
                   <div class="font-bold text-xl text-[#009baf]">{plan.price} €</div>
-                  {plan.oldPrice && (
-                    <div class="text-sm text-gray-500 line-through">antes {plan.oldPrice} €</div>
-                  )}
                 </td>
                 <td class="py-4 px-4 text-center font-medium text-green-600 border-r border-gray-200">
                   {hasValue(plan.bonus) ? `${plan.bonus}/mes` : '-'}
